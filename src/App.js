@@ -1,23 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+
+import { CssBaseline } from '@mui/material';
+import NavigationBar from './common/navigationBar/NavigationBar.js'
+import Footer from './common/footer/Footer.js'
+import Signin from './components/signin/Signin.js'
+import SignUp from './components/signup/SignUp.js'
+
+import Home from './components/home/Home.js'
+import Products from './components/products/Products.js'
+import { Routes, Route, Link } from 'react-router-dom';
 
 function App() {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Routes>
+        <Route exact path='/' element={<Home />} />
+        <Route exact path='/signin' element={<Signin />} />
+        <Route exact path='/signUp' element={<SignUp />} />
+        <Route exact path='/products' element={<Products />} />
+      </Routes>
+
+      <Footer />
+
     </div>
   );
 }
