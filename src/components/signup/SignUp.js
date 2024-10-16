@@ -5,7 +5,6 @@ import {
     Button,
     CssBaseline,
     TextField,
-    Box,
     Typography,
     Container,
 } from '@mui/material';
@@ -64,8 +63,8 @@ const SignUp = () => {
     const [contactNbrError, setContactNbrError] = React.useState(false);
     const [contactNbrErrorMessage, setContactNbrErrorMessage] = React.useState('');
 
-    const isLoggedIn = false;
-    const isAdmin = false;
+    // const isLoggedIn = false;
+    // const isAdmin = false;
 
 
 
@@ -102,13 +101,6 @@ const SignUp = () => {
     };
 
     const validateInputs = () => {
-
-        // const email = document.getElementById('email');
-        // const password = document.getElementById('password');
-        // const firstName = document.getElementById('firstName');
-        // const lastName = document.getElementById('lastName');
-        // const confirmPassword = document.getElementById('confirmPassword');
-        // const ContactNbr = document.getElementById('ContactNbr');
 
         let isValid = true;
 
@@ -245,7 +237,7 @@ const SignUp = () => {
     return (
         <>
             {/* NavigationBar called with required props */}
-            <NavigationBar page="signin" isLoggedIn={isLoggedIn} isAdmin={isAdmin} />
+            <NavigationBar page="signin" isLoggedIn={sessionStorage.getItem('isLoggedIn')} isAdmin={sessionStorage.getItem('isAdmin')} />
 
             <Container component="main" maxWidth="xs" sx={{ marginTop: '30px', minHeight: '85vh' }}  >
                 <CssBaseline />

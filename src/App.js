@@ -9,6 +9,8 @@ import Home from './components/home/Home.js'
 import Products from './components/products/Products.js'
 import ProductDetails from './components/productDetails/ProductDetails.js'
 import { Routes, Route, Link } from 'react-router-dom';
+import UpdateProductAdmin from './components/updateProductAdmin/UpdateProductAdmin.js'
+import AddProductAdmin from './components/addProductAdmin/AddProductAdmin.js';
 
 function App() {
 
@@ -20,6 +22,8 @@ function App() {
         <Route exact path='/signUp' element={<SignUp />} />
         <Route exact path='/products' element={<Products />} />
         <Route exact path='/productDetails/:productID' element={<ProductDetails />} />
+        <Route exact path='/products/update' element={<UpdateProductAdmin />} />
+        <Route exact path='/products/add' element={<AddProductAdmin />} />
       </Routes>
 
       <Footer />

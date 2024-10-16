@@ -159,9 +159,9 @@ const Products = () => {
 
     const navigate = useNavigate();
 
-    console.log('products page: isAdmin: ', isAdmin);
-    console.log('products page: isLoggedin: ', isLoggedIn);
-    console.log('products page: accessToken: ', accessToken);
+    // console.log('products page: isAdmin: ', isAdmin);
+    // console.log('products page: isLoggedin: ', isLoggedIn);
+    // console.log('products page: accessToken: ', accessToken);
     // const isLoggedIn = false;
     // const isAdmin = false;
 
@@ -187,7 +187,7 @@ const Products = () => {
 
             // console.log(response.headers.get('x-auth-token'));
             console.log('get Categories Succesfull');
-            console.log('get category response data: ', data);
+            // console.log('get category response data: ', data);
 
         }
         catch (error) {
@@ -226,7 +226,7 @@ const Products = () => {
 
             // console.log(response.headers.get('x-auth-token'));
             console.log('get Products Succesfull');
-            console.log('get Products response data: ', data);
+            // console.log('get Products response data: ', data);
 
         }
         catch (error) {
@@ -243,8 +243,8 @@ const Products = () => {
     useEffect(() => { getProduts(); }, []);
 
     async function deleteProduct(product) {
-        console.log('*-------- inside deleteProduct -----------*')
-        console.log('deleting: ', product.id, product.name)
+        // console.log('*-------- inside deleteProduct -----------*')
+        // console.log('deleting: ', product.id, product.name)
 
         try {
 
@@ -257,15 +257,11 @@ const Products = () => {
                 }
             });
 
-            console.log('API request submited');
+            // console.log('API request submited');
 
             if (!response.ok) {
                 throw new Error(`API request failed with status ${response.status}`);
             }
-
-            console.log('API request response OK');
-
-            // const data = await response.json();
 
             // console.log(response.headers.get('x-auth-token'));
             console.log('Delete Product Succesfull');
@@ -342,6 +338,15 @@ const Products = () => {
         setOpen(true);
     };
 
+    const handleProductEdit = (product) => {
+
+        console.log('calling product edit: ', product.id, product.name)
+        sessionStorage.setItem('product', JSON.stringify(product));
+
+        navigate(`/products/update`);
+
+    }
+
     const handleClose = () => {
         setOpen(false);
     };
@@ -410,14 +415,18 @@ const Products = () => {
 
                     {isAdmin === 'true' ?
                         <Grid>
-                            <IconButton aria-label="Edit" >
+                            <IconButton aria-label="Edit" onClick={ () => handleProductEdit(product)} >
                                 <EditIcon />
                             </IconButton>
+
+
                             <IconButton aria-label="Delete" onClick={handleDialogOpen}>
                                 <DeleteIcon />
                             </IconButton>
-                            <Dialog open={open}
+                            <Dialog
+                                open={open}
                                 onClose={handleClose}
+                                overlayStyle={{backgroundColor: 'transparent'}}
                                 aria-labelledby="alert-dialog-title"
                                 aria-describedby="alert-dialog-description"
                             >
@@ -436,8 +445,6 @@ const Products = () => {
                                     </Button>
                                     <Button variant="outlined" onClick={handleClose}>CANCEL</Button>
                                 </DialogActions>
-
-
                             </Dialog>
                         </Grid>
                         :
@@ -509,12 +516,12 @@ const Products = () => {
                     key={message}
                     autoHideDuration={6000}
                     ContentProps={{
-                        sx:{
-                          color: "black",
-                          bgcolor: "lightgreen",
-                          fontWeight: "bold",
+                        sx: {
+                            color: "black",
+                            bgcolor: "lightgreen",
+                            fontWeight: "bold",
                         }
-                       }}
+                    }}
                 />
 
 

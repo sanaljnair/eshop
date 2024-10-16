@@ -149,7 +149,24 @@ const NavigationBar = (props) => {
                 <Button
                     key="AddProduct"
                     sx={{ color: '#fff', textTransform: 'none', fontSize: 16 }}
-                    component={Link} to="/signin"                                           // <- change here 
+                    component={Link} to='/signin'                                           // <- change here 
+                >
+                    Add Product
+                </Button>
+            </Box>
+        );
+
+    };
+
+    const RenderAddProductAdmin = () => {
+
+        // console.log('inside RenderAddProduct component')
+        return (
+            <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
+                <Button
+                    key="AddProduct"
+                    sx={{ color: '#fff', textTransform: 'none', fontSize: 16 }}
+                    component={Link} to='/products/add'                                           // <- change here 
                 >
                     Add Product
                 </Button>
@@ -212,7 +229,7 @@ const NavigationBar = (props) => {
                         return (
                             <>
                                 <RenderHome />
-                                <RenderAddProduct />
+                                <RenderAddProductAdmin />
                                 <RenderLogout />
                             </>
                         );
@@ -229,7 +246,7 @@ const NavigationBar = (props) => {
                     return (
                         <>
                             <RenderHome />
-                            <RenderAddProduct />
+                            <RenderAddProductAdmin />
                             <RenderLogin />
                         </>
                     );
