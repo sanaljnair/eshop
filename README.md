@@ -42,3 +42,8 @@ You may also see any lint errors in the console.
 
 ![image](https://github.com/user-attachments/assets/d5bee945-d719-4cce-b6ee-cf522fe94873)
 
+
+#### Product Details Page
+
+![image](https://github.com/user-attachments/assets/020a85d6-8a2b-4b86-8ac6-bba3f02a53ec)
+
