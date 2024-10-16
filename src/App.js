@@ -7,6 +7,7 @@ import SignUp from './components/signup/SignUp.js'
 
 import Home from './components/home/Home.js'
 import Products from './components/products/Products.js'
+import ProductDetails from './components/productDetails/ProductDetails.js'
 import { Routes, Route, Link } from 'react-router-dom';
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
         <Route exact path='/signin' element={<Signin />} />
         <Route exact path='/signUp' element={<SignUp />} />
         <Route exact path='/products' element={<Products />} />
+        <Route exact path='/productDetails/:productID' element={<ProductDetails />} />
       </Routes>
 
       <Footer />

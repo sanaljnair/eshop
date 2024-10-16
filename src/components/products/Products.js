@@ -23,6 +23,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Box from '@mui/material/Box';
 import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
+import { Link, useNavigate } from 'react-router-dom';
 
 
 // const productsData = [{
@@ -140,9 +141,11 @@ const Products = () => {
     const [selectedCategory, setSelectedCategory] = useState('all');
     const [sortBy, setSortBy] = useState('price-high');
 
-    // console.log('products page: isAdmin: ', isAdmin);
-    // console.log('products page: isLoggedin: ', isLoggedIn);
-    // console.log('products page: accessToken: ', accessToken);
+    const navigate = useNavigate();
+
+    console.log('products page: isAdmin: ', isAdmin);
+    console.log('products page: isLoggedin: ', isLoggedIn);
+    console.log('products page: accessToken: ', accessToken);
     // const isLoggedIn = false;
     // const isAdmin = false;
 
@@ -152,6 +155,7 @@ const Products = () => {
 
             const response = await fetch('https://dev-project-ecommerce.upgrad.dev/api/products/categories', {
                 method: 'GET',
+                mode: 'cors',
                 headers: {
                     'Content-Type': 'application/json',
                     'x-auth-token': sessionStorage.getItem('access-token'),
@@ -167,11 +171,15 @@ const Products = () => {
 
             // console.log(response.headers.get('x-auth-token'));
             console.log('get Categories Succesfull');
-            console.log('categories: ', categories);
+            console.log('get category response data: ', data);
 
         }
         catch (error) {
             console.log(error.message || 'An error occurred during login');
+        } finally {
+            
+            console.log('categories: ', categories);
+
         }
 
     }
@@ -185,6 +193,7 @@ const Products = () => {
 
             const response = await fetch('https://dev-project-ecommerce.upgrad.dev/api/products/', {
                 method: 'GET',
+                mode: 'cors',
                 headers: {
                     'Content-Type': 'application/json',
                     'x-auth-token': sessionStorage.getItem('access-token'),
@@ -201,11 +210,14 @@ const Products = () => {
 
             // console.log(response.headers.get('x-auth-token'));
             console.log('get Products Succesfull');
-            console.log('productList: ', productList);
-
+            console.log('get Products response data: ', data);
+            
         }
         catch (error) {
             console.log(error.message || 'An error occurred during login');
+        } finally {
+            console.log('productList: ', productList);
+ 
         }
 
     }
@@ -257,20 +269,12 @@ const Products = () => {
         setProductList(sortedProducts);
     };
 
-    // const RenderEditProducts = () => {
+    // navigate to productDetails page along with product id
+    const navigateToProductDetails = (productID) => {
 
-    //     if (isAdmin == true) {
-    //         return(<Grid>
-    //             <IconButton aria-label="Edit">
-    //                 <EditIcon />
-    //             </IconButton>
-    //             <IconButton aria-label="Delete">
-    //                 <DeleteIcon />
-    //             </IconButton>
-    //         </Grid>
-    //         );
-    //     }
-    // }
+        console.log('product screen product.id: ', productID);
+        navigate(`/productDetails/${productID}`);
+    }
 
 
     const ProductCard = ({ product }) => {
@@ -283,6 +287,7 @@ const Products = () => {
                     sx={{ height: 200 }}
                     image={product.imageUrl}
                     title={product.name}
+                    component='img'
                 />
                 <CardContent sx={{ padding: '16px', height: 135 }}>
                     <Grid container justifyContent="space-between">
@@ -318,6 +323,7 @@ const Products = () => {
                             size="small"
                             variant="contained"
                             sx={{ bgcolor: "#3f51b5" }}
+                            onClick={() => navigateToProductDetails(product.id)}
                         >
                             BUY
                         </Button>
@@ -383,7 +389,7 @@ const Products = () => {
 
                 <Grid container spacing={2} alignItems='center' >
                     {productList.map((product) => (
-                        <Grid size={4} item xs={12} sm={6} md={4} key={product.id} >
+                        <Grid size={4} xs={12} sm={6} md={4} key={product.id} >
                             <div>
                                 <ProductCard product={product} />
                             </div>

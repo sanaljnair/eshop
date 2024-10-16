@@ -54,7 +54,6 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 
-// const NavigationBar = ({ isLoggedIn, isAdmin }) => {
 const NavigationBar = (props) => {
 
 
@@ -205,6 +204,7 @@ const NavigationBar = (props) => {
                     </>
                 );
             case 'products':
+            case 'productDetails':
                 if (isLoggedIn === 'true') {
 
                     if (isAdmin === 'true') {
