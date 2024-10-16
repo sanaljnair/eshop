@@ -24,6 +24,12 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import Box from '@mui/material/Box';
 import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
 import { Link, useNavigate } from 'react-router-dom';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import Snackbar from '@mui/material/Snackbar';
 
 
 // const productsData = [{
@@ -128,18 +134,28 @@ import { Link, useNavigate } from 'react-router-dom';
 //     "Perfumes"
 // ]
 
+// function SlideTransition(props) {
+//     return <Slide {...props} direction="up" />;
+// }
+
 const Products = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(sessionStorage.getItem('isLoggedIn'));
     const [isAdmin, setIsAdmin] = useState(sessionStorage.getItem('isAdmin'));
     const [accessToken, setAccessToken] = useState(sessionStorage.getItem('access-token'));
     const [productList, setProductList] = useState([]);
     const [categories, setCategories] = useState([]);
+    const [open, setOpen] = useState(false);
+    const [snackBarstate, setSnackBarState] = React.useState({
+        snackOpen: false,
+        message: ''
+    });
 
+    const { snackOpen, message } = snackBarstate;
 
     // const [products, setProducts] = useState(productsData);
     // const [products, setProducts] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState('all');
-    const [sortBy, setSortBy] = useState('price-high');
+    const [sortBy, setSortBy] = useState('default');
 
     const navigate = useNavigate();
 
@@ -175,9 +191,9 @@ const Products = () => {
 
         }
         catch (error) {
-            console.log(error.message || 'An error occurred during login');
+            console.log(error.message || 'An error occurred during get category list');
         } finally {
-            
+
             console.log('categories: ', categories);
 
         }
@@ -211,18 +227,64 @@ const Products = () => {
             // console.log(response.headers.get('x-auth-token'));
             console.log('get Products Succesfull');
             console.log('get Products response data: ', data);
-            
+
         }
         catch (error) {
-            console.log(error.message || 'An error occurred during login');
+            console.log(error.message || 'An error occurred during get product list');
         } finally {
             console.log('productList: ', productList);
- 
+
         }
 
     }
 
+
+
     useEffect(() => { getProduts(); }, []);
+
+    async function deleteProduct(product) {
+        console.log('*-------- inside deleteProduct -----------*')
+        console.log('deleting: ', product.id, product.name)
+
+        try {
+
+            const response = await fetch(`https://dev-project-ecommerce.upgrad.dev/api/products/${product.id}`, {
+                method: 'DELETE',
+                mode: 'cors',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'x-auth-token': sessionStorage.getItem('access-token'),
+                }
+            });
+
+            console.log('API request submited');
+
+            if (!response.ok) {
+                throw new Error(`API request failed with status ${response.status}`);
+            }
+
+            console.log('API request response OK');
+
+            // const data = await response.json();
+
+            // console.log(response.headers.get('x-auth-token'));
+            console.log('Delete Product Succesfull');
+
+            setSnackBarState({
+                snackOpen: true,
+                message: `Product ${product.name} deleted successfully`
+            });
+
+        }
+        catch (error) {
+            console.log(error.message || 'An error occurred during delete product');
+        } finally {
+            console.log('productList: ', productList);
+
+        }
+
+
+    }
 
     const handleCategoryChange = (event, newCategory) => {
         // console.log('newCategory: ', newCategory);
@@ -274,6 +336,23 @@ const Products = () => {
 
         console.log('product screen product.id: ', productID);
         navigate(`/productDetails/${productID}`);
+    }
+
+    const handleDialogOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
+
+    const handleConfirmDelete = (product) => {
+        setOpen(false);
+        deleteProduct(product);
+    }
+
+    const handleSnackBarClose = () => {
+        setSnackBarState({ ...snackBarstate, snackOpen: false });
     }
 
 
@@ -331,12 +410,35 @@ const Products = () => {
 
                     {isAdmin === 'true' ?
                         <Grid>
-                            <IconButton aria-label="Edit">
+                            <IconButton aria-label="Edit" >
                                 <EditIcon />
                             </IconButton>
-                            <IconButton aria-label="Delete">
+                            <IconButton aria-label="Delete" onClick={handleDialogOpen}>
                                 <DeleteIcon />
                             </IconButton>
+                            <Dialog open={open}
+                                onClose={handleClose}
+                                aria-labelledby="alert-dialog-title"
+                                aria-describedby="alert-dialog-description"
+                            >
+                                <DialogTitle id="alert-dialog-title">
+                                    {"Confirm deletion of product!"}
+
+                                </DialogTitle>
+                                <DialogContent>
+                                    <DialogContentText id="alert-dialog-description">
+                                        Are you sure you want to delete the product?
+                                    </DialogContentText>
+                                </DialogContent>
+                                <DialogActions>
+                                    <Button variant="contained" color="primary" onClick={() => handleConfirmDelete(product)} autoFocus>
+                                        OK
+                                    </Button>
+                                    <Button variant="outlined" onClick={handleClose}>CANCEL</Button>
+                                </DialogActions>
+
+
+                            </Dialog>
                         </Grid>
                         :
                         <></>
@@ -363,7 +465,7 @@ const Products = () => {
                     Products Page will be designed here
                 </Typography> */}
 
-                <ToggleButtonGroup value={selectedCategory} exclusive onChange={handleCategoryChange}>
+                <ToggleButtonGroup sx={{ marginTop: '30px', marginLeft: '10%' }} value={selectedCategory} exclusive onChange={handleCategoryChange}>
                     <ToggleButton value="all">All</ToggleButton>
 
                     {categories.map((category) => (
@@ -374,8 +476,8 @@ const Products = () => {
                 <br />
                 <br />
 
-                <FormControl size='medium' variant='outlined' sx={{ width: '150px' }}>
-                    <InputLabel id="demo-simple-select-label">Sort-By</InputLabel>
+                <FormControl size='medium' variant='outlined' sx={{ width: '200px' }}>
+                    <InputLabel id="select-label">Sort-By</InputLabel>
                     <Select value={sortBy} label="Sort-By" onChange={handleSortByChange}>
                         <MenuItem value="default">Default</MenuItem>
                         <MenuItem value="price-high">Price: High to Low</MenuItem>
@@ -398,6 +500,22 @@ const Products = () => {
                     ))}
 
                 </Grid>
+
+                <Snackbar
+                    anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+                    open={snackOpen}
+                    onClose={handleSnackBarClose}
+                    message={message}
+                    key={message}
+                    autoHideDuration={6000}
+                    ContentProps={{
+                        sx:{
+                          color: "black",
+                          bgcolor: "lightgreen",
+                          fontWeight: "bold",
+                        }
+                       }}
+                />
 
 
             </Container>

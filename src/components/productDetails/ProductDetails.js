@@ -81,7 +81,7 @@ const ProductDetails = () => {
 
 
     async function getCategories() {
-        console.log('*-------- inside getCategories  -----------*')
+        // console.log('*-------- inside getCategories  -----------*')
 
         try {
 
@@ -118,7 +118,7 @@ const ProductDetails = () => {
     //------------------------------
 
     async function fetchProductData() {
-        console.log('*-------- inside fetchProductData  -----------*')
+        // console.log('*-------- inside fetchProductData  -----------*')
 
         try {
 
@@ -204,7 +204,7 @@ const ProductDetails = () => {
 
                 <div spacing={2}  >
                     <div style={{ display: 'flex' }}>
-                        <Typography variant='h4'><b>{productDetails.name}</b></Typography>
+                        <Typography variant='h4' sx={{ maxWidth: 400}}><b>{productDetails.name}</b></Typography>
 
                         <Box
                             sx={{
@@ -215,9 +215,8 @@ const ProductDetails = () => {
                                 minWidth: 200,
                                 textAlign: 'center',
                                 color: 'white',
-                                marginLeft: 5
-
-
+                                marginLeft: 5,
+                                maxHeight: 42
                             }}
                         >
                             Available Quanity : {productDetails.availableItems}
@@ -228,7 +227,7 @@ const ProductDetails = () => {
                         <br />
                         <Typography variant='h6'>Category : <b>{productDetails.category}</b></Typography>
                         <br />
-                        <Typography variant='body1' fontSize='large'><i>{productDetails.description}</i></Typography>
+                        <Typography variant='body1' fontSize='large' sx={{ maxWidth: 500}}><i>{productDetails.description}</i></Typography>
                         <br />
                         <div style={{ display: 'flex', alignItems: 'left' }}>
 
