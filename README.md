@@ -38,6 +38,11 @@ You may also see any lint errors in the console.
 #### Sort By Price:
 ![image](https://github.com/user-attachments/assets/246f8ba4-4419-4beb-a85c-d15e9b538bb5)
 
+
+#### Product Details Page
+
+![image](https://github.com/user-attachments/assets/020a85d6-8a2b-4b86-8ac6-bba3f02a53ec)
+
 #### Search Function on Products Screen.
 
 ![image](https://github.com/user-attachments/assets/d5bee945-d719-4cce-b6ee-cf522fe94873)
