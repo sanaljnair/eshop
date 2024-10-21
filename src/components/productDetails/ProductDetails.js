@@ -67,17 +67,22 @@ const ProductDetails = () => {
     const [categories, setCategories] = useState([]);
     const [productDetails, setProductDetails] = useState(null);
     const [selectedCategory, setSelectedCategory] = useState('all');
-    
+    const [order, setOrder] = React.useState({});
+    const [quantity, setQuantity] = useState(1);
+
+    const [quantityError, setQuantityError] = React.useState(false);
+    const [quantityErrorMessage, setQuantityErrorMessage] = React.useState('');
+
     const { productID } = useParams();
 
     // console.log('product details page: isAdmin: ', isAdmin);
     // console.log('products details page: isLoggedin: ', isLoggedIn);
     // console.log('products details page: accessToken: ', accessToken);
     console.log('products details page: productID: ', productID);
-    
-    
-    
-    // const navigate = useNavigate();
+
+
+
+    const navigate = useNavigate();
 
 
     async function getCategories() {
@@ -152,7 +157,7 @@ const ProductDetails = () => {
 
     useEffect(() => {
         if (!productID) return;
-        
+
         fetchProductData();
     }, []);
 
@@ -169,6 +174,40 @@ const ProductDetails = () => {
     const handlePlaceOrder = () => {
         // Navigate to order page with product details and quantity
         console.log('*----------- inside handleCategoryChange -------*')
+
+        if (!quantity) {
+            setQuantityError(true);
+            setQuantityErrorMessage('Please enter valid quantity')
+
+        } else {
+            setQuantityError(false);
+            setQuantityErrorMessage('');
+
+            const data = {
+                "productDetails": productDetails,
+                "order": {
+                    "quantity": quantity,
+                    "product" : productDetails.id,
+                    "address": null
+                }
+            }
+            
+
+            navigate("/order", { state: data });
+
+
+        }
+
+
+
+    }
+
+    const handleQualtityChange = (event) => {
+        const { name, value } = event.target;
+
+        setQuantity(value);
+        setQuantityError(false);
+        setQuantityErrorMessage('');
 
     }
 
@@ -204,7 +243,7 @@ const ProductDetails = () => {
 
                 <div spacing={2}  >
                     <div style={{ display: 'flex' }}>
-                        <Typography variant='h4' sx={{ maxWidth: 400}}><b>{productDetails.name}</b></Typography>
+                        <Typography variant='h4' sx={{ maxWidth: 400 }}><b>{productDetails.name}</b></Typography>
 
                         <Box
                             sx={{
@@ -227,7 +266,7 @@ const ProductDetails = () => {
                         <br />
                         <Typography variant='h6'>Category : <b>{productDetails.category}</b></Typography>
                         <br />
-                        <Typography variant='body1' fontSize='large' sx={{ maxWidth: 500}}><i>{productDetails.description}</i></Typography>
+                        <Typography variant='body1' fontSize='large' sx={{ maxWidth: 500 }}><i>{productDetails.description}</i></Typography>
                         <br />
                         <div style={{ display: 'flex', alignItems: 'left' }}>
 
@@ -240,11 +279,20 @@ const ProductDetails = () => {
                         <TextField
                             label="Enter Quantity"
                             type="number"
-                            defaultValue={1}
+                            value={quantity}
+                            required
                             fullWidth
+                            id="quantity"
+                            name="quantity"
                             margin="normal"
+                            onChange={handleQualtityChange}
+                            error={quantityError}
+                            helperText={quantityErrorMessage}
                         />
-                        <Button variant="contained" sx={{ bgcolor: '#3f51b5' }} onClick={handlePlaceOrder}>
+                        <Button
+                            variant="contained"
+                            sx={{ bgcolor: '#3f51b5' }}
+                            onClick={handlePlaceOrder}>
                             PLACE ORDER
                         </Button>
                     </div>

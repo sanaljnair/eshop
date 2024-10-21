@@ -11,6 +11,7 @@ import ProductDetails from './components/productDetails/ProductDetails.js'
 import { Routes, Route, Link } from 'react-router-dom';
 import UpdateProductAdmin from './components/updateProductAdmin/UpdateProductAdmin.js'
 import AddProductAdmin from './components/addProductAdmin/AddProductAdmin.js';
+import PlaceOrder from './components/placeOrder/PlaceOrder.js'
 
 function App() {
 
@@ -24,6 +25,7 @@ function App() {
         <Route exact path='/productDetails/:productID' element={<ProductDetails />} />
         <Route exact path='/products/update' element={<UpdateProductAdmin />} />
         <Route exact path='/products/add' element={<AddProductAdmin />} />
+        <Route exact path='/order' element={<PlaceOrder />} />
       </Routes>
 
       <Footer />

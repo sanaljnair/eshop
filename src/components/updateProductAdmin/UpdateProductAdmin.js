@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
 import {
-    Avatar,
     Button,
     CssBaseline,
     TextField,
@@ -9,15 +8,11 @@ import {
     Container,
 } from '@mui/material';
 import { makeStyles } from '@mui/styles';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-// import axios from 'axios'; // Import axios for API calls
 import Grid from '@mui/material/Grid2';
 import { spacing, palette } from '@mui/system';
 import NavigationBar from '../../common/navigationBar/NavigationBar';
 import { Link, useNavigate } from 'react-router-dom';
 import Snackbar from '@mui/material/Snackbar';
-
-
 
 
 const useStyles = makeStyles((theme) => ({
@@ -253,24 +248,24 @@ const UpdateProductAdmin = () => {
                 snackOpen: true,
                 message: `Product ${product.name} modified succesfully`
             });
-            
+
             console.log('waiting for snack Bar');
 
             // setTimeout(() => {
             //     console.log('waiting for snack Bar');
-                
+
             // }, 5000);
 
-            
+
             // navigate to products page
             navigate('/products');
-            
+
         } catch (error) {
             console.log(error.message || 'An error occurred during product udpate');
             setErrorMessage('An error occurred during product udpate');
         } finally {
             setIsLoading(false); // Hide loading indicator 
-            
+
         }
     };
 

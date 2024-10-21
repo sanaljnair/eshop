@@ -115,7 +115,7 @@ const Signin = () => {
             console.log('x-auth-token: ', response.headers.get('x-auth-token'));
 
             // const token = response.headers.get('x-auth-token');
-            const token = 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbkBkZW1vLmNvbSIsImlhdCI6MTcyOTEwNDYzNywiZXhwIjoxNzI5MTEzMDM3fQ.Af8XpJ1cXFRKwfjqoq1v6EzRDp-Ek9iFR8UzSIUiAVN08D1BMzEvtXMFaB0DegPVq3FTx7_SMF1uF5x59Dg4jA';
+            const token = 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbkBkZW1vLmNvbSIsImlhdCI6MTcyOTU0MTU3NCwiZXhwIjoxNzI5NTQ5OTc0fQ.ErFxh5C_D2IZ7EtNSEVomvzqwnuw6ztClLewEhTxuzf73CSiDltg5FuancEhb-e-S-pPaAZ06l6qI56HS6J0DA';
 
             console.log('Login successful!');
             setLoginSuccessMessage('Login successful!');
