@@ -59,6 +59,16 @@ Login as Admin user
 
 ![image](https://github.com/user-attachments/assets/cbae3687-97fc-426d-bf4c-bd72de2a910e)
 
+#### Add New Product (Only using Admin Login)
+
+![image](https://github.com/user-attachments/assets/13a779c3-ca37-47e9-ae01-aedd7ea0da86)
+
+
+
+
+#### Edit Existing Product (Only using Admin Login)
+
+#### Delete Product (Only using Admin Login)
 
 
 #### Product Details Page
