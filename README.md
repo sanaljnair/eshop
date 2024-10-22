@@ -47,3 +47,21 @@ You may also see any lint errors in the console.
 
 ![image](https://github.com/user-attachments/assets/020a85d6-8a2b-4b86-8ac6-bba3f02a53ec)
 
+
+#### Place Order Page
+
+![image](https://github.com/user-attachments/assets/13909a81-dddb-4e00-9088-d32192408e7e)
+
+#### After selecting Address
+
+![image](https://github.com/user-attachments/assets/7cca0403-6ae6-41f7-9a65-9f6c50b4e519)
+
+
+![image](https://github.com/user-attachments/assets/023872b4-cf13-4f43-b4c3-114d1165df32)
+
+#### Order Confirmation Page
+
+![image](https://github.com/user-attachments/assets/5d71a582-3e4d-4bd4-9fe5-a83c3386bd7c)
+
+
+
