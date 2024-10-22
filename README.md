@@ -16,24 +16,29 @@ You may also see any lint errors in the console.
 
 #### Screen Shots form the Application. 
 
-#### Home Page
+#### Home Page when user is not logged in. 
 
-![image](https://github.com/user-attachments/assets/bc6969d4-8cee-4854-b91b-eca8716e5d53)
+![image](https://github.com/user-attachments/assets/bfd16419-da27-4582-9d21-5a8bfcfd62db)
 
 #### Signup:
-![image](https://github.com/user-attachments/assets/6a73a75d-e6dd-445a-bbd8-e3c7e58dd469)
+![image](https://github.com/user-attachments/assets/3234d37d-9faf-4d9a-bae5-65175dc8efc4)
 
-#### Login:
-![image](https://github.com/user-attachments/assets/90475ec7-dd51-4442-8b4d-a1c1afd82bea)
+![image](https://github.com/user-attachments/assets/cc115181-ec07-41c9-a238-788c03a8e261)
 
+#### Login as Non Admin User:
 
-#### Products Listing:
+![image](https://github.com/user-attachments/assets/5771c28d-9dfb-4073-b89e-463d940c0268)
 
-![image](https://github.com/user-attachments/assets/d3eeefdb-6d45-4bb3-a784-65fa2e9cf92a)
+#### Products Listing (Non- Admin User):
 
-#### Quick Filter:
+![image](https://github.com/user-attachments/assets/a26bbd7a-b2cf-467c-8e53-447dcbcd8e76)
 
-![image](https://github.com/user-attachments/assets/e56af99f-620f-4c3f-966e-15745a0ca7e2)
+#### Quick Filter or Search bar:
+
+Searched for Shoe: 
+
+![image](https://github.com/user-attachments/assets/9ff346fe-9e14-4bb8-bec0-d0ab4b396367)
+
 
 #### Sort By Price:
 ![image](https://github.com/user-attachments/assets/246f8ba4-4419-4beb-a85c-d15e9b538bb5)
