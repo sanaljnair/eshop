@@ -29,9 +29,6 @@ const useStyles = makeStyles((theme) => ({
         flexDirection: 'column',
         alignItems: 'center',
     },
-    avatar: {
-        backgroundColor: 'red',
-    },
     form: {
         // width: '100%', // Make form fill available width
         marginTop: spacing(1),
@@ -45,6 +42,8 @@ const useStyles = makeStyles((theme) => ({
 
 export default function PlaceOrder() {
     const classes = useStyles();
+
+    // access data passed to the Placeorder page
     const location = useLocation();
     const input = location.state;
 
@@ -52,6 +51,7 @@ export default function PlaceOrder() {
     console.log('order: ', input.order);
     console.log('productDetails: ', input.productDetails);
 
+    // State variables for Stepper functions
     const [activeStep, setActiveStep] = React.useState(1);
     const [completed, setCompleted] = React.useState({ 0: true });
     const [addressList, setAddressList] = useState([]);
@@ -59,7 +59,7 @@ export default function PlaceOrder() {
     const [productDetails, setProductDetails] = React.useState(input.productDetails);
     const [order, setOrder] = React.useState(input.order);
 
-
+    //State variables for Add Address Form elements and validations
     const [name, setName] = useState('');
     const [contactNumber, setContactNumber] = useState('');
     const [city, setCity] = useState('');
@@ -87,6 +87,7 @@ export default function PlaceOrder() {
     const [zipcodeError, setZipcodeError] = React.useState(false);
     const [zipcodeErrorMessage, setZipcodeErrorMessage] = React.useState('');
 
+    // State variables for snacBar functions
     const [snackBarstate, setSnackBarState] = React.useState({
         snackOpen: false,
         message: '',
@@ -95,11 +96,13 @@ export default function PlaceOrder() {
 
     const { snackOpen, message } = snackBarstate;
 
+    // Snacbar functions
     const handleSnackBarClose = () => {
         setSnackBarState({ ...snackBarstate, snackOpen: false });
     }
 
     const navigate = useNavigate();
+
 
     const totalSteps = () => {
         return steps.length;
@@ -171,7 +174,7 @@ export default function PlaceOrder() {
 
     useEffect(() => { getAddress(); }, []);
 
-
+    // *--------------------------------------- Manage Form elements change ----------------------------******************
     const handleChange = (event) => {
         const { name, value } = event.target;
         // console.log('event.target:', event.target);
@@ -213,6 +216,8 @@ export default function PlaceOrder() {
 
     };
 
+
+    // *--------------------------------------- Validate input field ----------------------------******************
     const validateInputs = () => {
 
         let isValid = true;
@@ -291,6 +296,7 @@ export default function PlaceOrder() {
 
     }
 
+    // *--------------------------------------- API Call for Adding New Address ----------------------------******************
     const handleSubmit = async (event) => {
         event.preventDefault();
 
@@ -342,22 +348,11 @@ export default function PlaceOrder() {
 
             setSuccessMessage(`Address Added succesfully`)
 
-            // sessionStorage.setItem("snackBarState", {
-            //     snackOpen: true,
-            //     message: `Address Added successfuly!`,
-            //     snackColor: 'lightgreen'
-            // });
-
             setSnackBarState({
                 snackOpen: true,
                 message: `Address Added successfuly!`,
                 snackColor: 'lightgreen'
             });
-
-            // console.log('waiting for snack Bar');
-
-            // Fetch List of Address
-
 
         } catch (error) {
             console.log(error.message || 'An error occurred during Add Address');
@@ -367,6 +362,8 @@ export default function PlaceOrder() {
 
         }
     };
+
+    // *--------------------------------------- API Call for Place Order ----------------------------******************
 
     const handlePlaceOrder = async (event) => {
         console.log('*----------- Making API Call for Place Order --------------*')
@@ -392,7 +389,7 @@ export default function PlaceOrder() {
             }
 
             const data = await response.json();
-            
+
             console.log('Order placed successfuly');
             console.log('Response: ', data);
 
@@ -408,19 +405,28 @@ export default function PlaceOrder() {
                 snackColor: 'lightgreen'
             });
 
-            
+            // Navigate to "/products"
+            navigate("/products");
+
+
         } catch (error) {
             console.log(error.message || 'An error occurred during Add Address');
             setErrorMessage('An error occurred during Add Address');
-        } 
+        }
     }
 
 
+    // *--------------------------------------- Page Navigation Functions ----------------------------******************
+
+    // Navigate back to Product Details Page. 
+    
+    const handleBackToDetails = () => {
+        navigate(`/productDetails/${order.product}`);
+    }
+
+    // *--------------------------------------- Sptepper Functions -------------------------------*****************
+
     const handleNext = () => {
-        // console.log('*-------- Handle Next Start -----*');
-        // console.log('Active: ', activeStep);
-        // console.log('completed: ', completed);
-        // console.log('*-------- Handle Complete -----*');
 
         console.log('click next order', order);
 
@@ -432,15 +438,6 @@ export default function PlaceOrder() {
                 message: "Please select an Address",
                 snackColor: "red"
             });
-
-            return;
-
-            // sessionStorage.setItem("snackBarState", {
-            //     snackOpen: true,
-            //     message: "Please select an Address",
-            //     snackColor: "red"
-            // });
-
 
         } else {
 
@@ -455,18 +452,7 @@ export default function PlaceOrder() {
             setActiveStep(newActiveStep);
         }
 
-
-
-        // console.log('*-------- Handle Next Finish -----*');
-        // console.log('Active: ', activeStep);
-        // console.log('completed: ', completed);
-        // console.log('*-------- Handle Complete -----*');
-    };
-
-    const handleBackToDetails = () => {
-        // Navigate back to Product Details Page. 
-        navigate(`/productDetails/${order.product}`);
-    }
+    };    
 
     const handleBack = () => {
         setActiveStep((prevActiveStep) => prevActiveStep - 1);
@@ -477,21 +463,18 @@ export default function PlaceOrder() {
     };
 
     const handleComplete = () => {
-        // console.log('*-------- Handle Complete -----*');
-        // console.log('Active: ', activeStep);
-        // console.log('completed: ', completed);
-        // console.log('*-------- Handle Complete -----*');
+        
         setCompleted({
             ...completed,
             [activeStep]: true,
         });
-        // handleNext();
+        // handleNext();                  
     };
 
-    const handleReset = () => {
-        setActiveStep(0);
-        setCompleted({});
-    };
+    // const handleReset = () => {
+    //     setActiveStep(0);
+    //     setCompleted({});
+    // };
 
     const handleSelectChange = (event) => {
 
@@ -505,7 +488,6 @@ export default function PlaceOrder() {
 
         setOrder(order);
         console.log('Order Address updated ', order);
-
 
     };
 
@@ -751,7 +733,6 @@ export default function PlaceOrder() {
                                 >
                                     NEXT
                                 </Button>
-
                             </Grid>
                         </Grid>
                         <Grid>
@@ -782,7 +763,7 @@ export default function PlaceOrder() {
                         ))}
                     </Stepper>
                     <div>
-                        {allStepsCompleted() ? (
+                        {/* {allStepsCompleted() ? (                                                 -------- delete during cleanup
                             <React.Fragment>
                                 <Typography sx={{ mt: 2, mb: 1 }}>
                                     All steps completed - you&apos;re finished
@@ -792,42 +773,42 @@ export default function PlaceOrder() {
                                     <Button onClick={handleReset}>Reset</Button>
                                 </Box>
                             </React.Fragment>
-                        ) : (
+                        ) : ( */}
 
 
-                            <React.Fragment>
-                                {activeStep === 1 ?
-                                    <RenderSelectAddress />
-                                    :
-                                    (
-                                        activeStep === 2 ?
-                                            <RenderPlaceOrder />
-                                            :
-                                            <></>
-                                    )
-                                }
+                        <React.Fragment>
+                            {activeStep === 1 ?
+                                <RenderSelectAddress />
+                                :
+                                (
+                                    activeStep === 2 ?
+                                        <RenderPlaceOrder />
+                                        :
+                                        <></>
+                                )
+                            }
 
 
-                                <Snackbar
-                                    anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-                                    open={snackOpen}
-                                    onClose={handleSnackBarClose}
-                                    message={message}
-                                    key={message}
-                                    autoHideDuration={6000}
-                                    ContentProps={{
-                                        sx: {
-                                            color: "black",
-                                            bgcolor: snackBarstate.snackColor,
-                                            fontWeight: "bold",
-                                        }
-                                    }}
-                                />
-                            </React.Fragment>
-                        )}
+                            {/* )}                                                                    -------- delete during cleanup */}
+                        </React.Fragment>
                     </div>
                 </Box>
             </Container >
+            <Snackbar
+                anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+                open={snackOpen}
+                onClose={handleSnackBarClose}
+                message={message}
+                key={message}
+                autoHideDuration={6000}
+                ContentProps={{
+                    sx: {
+                        color: "black",
+                        bgcolor: snackBarstate.snackColor,
+                        fontWeight: "bold",
+                    }
+                }}
+            />
         </Box >
     );
 }

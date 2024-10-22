@@ -415,23 +415,23 @@ const UpdateProductAdmin = () => {
                             {errorMessage ? (<Typography variant="h6" color='error' align='center'>{errorMessage}</Typography>) : (<></>)}
                         </Grid>
                     </form>
-                    <Snackbar
-                        anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-                        open={snackOpen}
-                        onClose={handleSnackBarClose}
-                        message={message}
-                        key={message}
-                        // autoHideDuration={6000}
-                        ContentProps={{
-                            sx: {
-                                color: "black",
-                                bgcolor: "lightgreen",
-                                fontWeight: "bold",
-                            }
-                        }}
-                    />
                 </div>
             </Container>
+            <Snackbar
+                anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+                open={snackOpen}
+                onClose={handleSnackBarClose}
+                message={message}
+                key={message}
+                // autoHideDuration={6000}
+                ContentProps={{
+                    sx: {
+                        color: "black",
+                        bgcolor: "lightgreen",
+                        fontWeight: "bold",
+                    }
+                }}
+            />
         </>
 
     );

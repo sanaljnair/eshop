@@ -214,7 +214,7 @@ const ProductDetails = () => {
 
     const RenderCategories = () => {
 
-        return (<ToggleButtonGroup sx={{ marginTop: '30px', marginLeft: '10%' }} value={selectedCategory} exclusive onChange={handleCategoryChange}>
+        return (<ToggleButtonGroup sx={{  marginLeft: '20%' }} value={selectedCategory} exclusive onChange={handleCategoryChange}>
             <ToggleButton value="all">All</ToggleButton>
 
             {categories.map((category) => (

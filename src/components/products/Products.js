@@ -21,7 +21,6 @@ import Grid from '@mui/material/Grid2';
 import NavigationBar from '../../common/navigationBar/NavigationBar';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
-import Box from '@mui/material/Box';
 import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
 import { Link, useNavigate } from 'react-router-dom';
 import Dialog from '@mui/material/Dialog';
@@ -31,117 +30,10 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Snackbar from '@mui/material/Snackbar';
 
-
-// const productsData = [{
-//     "id": "66f50611a9fbd1113cdf98324",
-//     "name": "cmf phone  123",
-//     "category": "Electronics",
-//     "price": 12000.0,
-//     "description": "good camera, smart phone, good camera, smart phone, good camera, smart phone, good camera, smart phone, good camera, smart phone, ",
-//     "manufacturer": "Nothing Else",
-//     "availableItems": 20,
-//     "imageUrl": "https://images.pexels.com/photos/336948/pexels-photo-336948.jpeg?cs=srgb&dl=pexels-solliefoto-336948.jpg&fm=jpg"
-// },
-// {
-//     "id": "66f7f44cea259f27abba20ea4",
-//     "name": "Adidas M1 shoes",
-//     "category": "Clothing",
-//     "price": 2300.0,
-//     "description": "Nice & Comfort",
-//     "manufacturer": "Adidas",
-//     "availableItems": 200,
-//     "imageUrl": "https://cdn.britannica.com/94/193794-050-0FB7060D/Adidas-logo.jpg"
-// },
-// {
-//     "id": "66fe99ba69ee8833bb390ca23",
-//     "name": "Pants",
-//     "category": "Pants",
-//     "price": 9003.0,
-//     "description": "Its not a pant, its your partner",
-//     "manufacturer": "Louis Phillipe",
-//     "availableItems": 100,
-//     "imageUrl": "https://images.pexels.com/photos/603022/pexels-photo-603022.jpeg"
-// }, {
-//     "id": "66f7f44cea259f27abba20ea2",
-//     "name": "Adidas M1 shoes",
-//     "category": "Clothing",
-//     "price": 2200.0,
-//     "description": "Nice & Comfort",
-//     "manufacturer": "Adidas",
-//     "availableItems": 200,
-//     "imageUrl": "https://cdn.britannica.com/94/193794-050-0FB7060D/Adidas-logo.jpg"
-// },
-// {
-//     "id": "66fe99ba69ee8833bb390ca21",
-//     "name": "Pants",
-//     "category": "Pants",
-//     "price": 9001.0,
-//     "description": "Its not a pant, its your partner",
-//     "manufacturer": "Louis Phillipe",
-//     "availableItems": 100,
-//     "imageUrl": "https://images.pexels.com/photos/603022/pexels-photo-603022.jpeg"
-// },
-// {
-//     "id": "66f7f44cea259f27abba20ea4",
-//     "name": "Adidas M1 shoes",
-//     "category": "Clothing",
-//     "price": 2220.0,
-//     "description": "Nice & Comfort",
-//     "manufacturer": "Adidas",
-//     "availableItems": 200,
-//     "imageUrl": "https://cdn.britannica.com/94/193794-050-0FB7060D/Adidas-logo.jpg"
-// },
-// {
-//     "id": "66fe99ba69ee8833bb390ca23",
-//     "name": "Pants",
-//     "category": "Pants",
-//     "price": 9012.0,
-//     "description": "Its not a pant, its your partner",
-//     "manufacturer": "Louis Phillipe",
-//     "availableItems": 100,
-//     "imageUrl": "https://images.pexels.com/photos/603022/pexels-photo-603022.jpeg"
-// }, {
-//     "id": "66f7f44cea259f27abba20ea2",
-//     "name": "Adidas M1 shoes",
-//     "category": "Clothing",
-//     "price": 2221.0,
-//     "description": "Nice & Comfort",
-//     "manufacturer": "Adidas",
-//     "availableItems": 200,
-//     "imageUrl": "https://cdn.britannica.com/94/193794-050-0FB7060D/Adidas-logo.jpg"
-// },
-// {
-//     "id": "66fe99ba69ee8833bb390ca21",
-//     "name": "Pants",
-//     "category": "Pants",
-//     "price": 9211.0,
-//     "description": "Its not a pant, its your partner",
-//     "manufacturer": "Louis Phillipe",
-//     "availableItems": 100,
-//     "imageUrl": "https://images.pexels.com/photos/603022/pexels-photo-603022.jpeg"
-// }
-// ];
-
-// const categories1 = [
-//     "Cooking",
-//     "Clothing",
-//     "Clothes",
-//     "Electronics",
-//     "Watches",
-//     "Pants",
-//     "Shoes",
-//     "Sports",
-//     "Perfumes"
-// ]
-
-// function SlideTransition(props) {
-//     return <Slide {...props} direction="up" />;
-// }
-
 const Products = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(sessionStorage.getItem('isLoggedIn'));
     const [isAdmin, setIsAdmin] = useState(sessionStorage.getItem('isAdmin'));
-    const [accessToken, setAccessToken] = useState(sessionStorage.getItem('access-token'));
+    // const [accessToken, setAccessToken] = useState(sessionStorage.getItem('access-token'));
     const [productList, setProductList] = useState([]);
     const [categories, setCategories] = useState([]);
     const [open, setOpen] = useState(false);
@@ -152,18 +44,10 @@ const Products = () => {
 
     const { snackOpen, message } = snackBarstate;
 
-    // const [products, setProducts] = useState(productsData);
-    // const [products, setProducts] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState('all');
     const [sortBy, setSortBy] = useState('default');
 
     const navigate = useNavigate();
-
-    // console.log('products page: isAdmin: ', isAdmin);
-    // console.log('products page: isLoggedin: ', isLoggedIn);
-    // console.log('products page: accessToken: ', accessToken);
-    // const isLoggedIn = false;
-    // const isAdmin = false;
 
     async function getCategories() {
 
@@ -185,19 +69,16 @@ const Products = () => {
             const data = await response.json();
             setCategories(data);
 
+            sessionStorage.setItem("categories",data)
+
             // console.log(response.headers.get('x-auth-token'));
-            console.log('get Categories Succesfull');
-            // console.log('get category response data: ', data);
+            console.log('get Categories Succesfull: ');
+            // console.log('get category response data: ', data, 'typeof: ' , typeof(data));
 
         }
         catch (error) {
             console.log(error.message || 'An error occurred during get category list');
-        } finally {
-
-            console.log('categories: ', categories);
-
-        }
-
+        } 
     }
 
     useEffect(() => { getCategories(); }, []);
@@ -415,7 +296,7 @@ const Products = () => {
 
                     {isAdmin === 'true' ?
                         <Grid>
-                            <IconButton aria-label="Edit" onClick={ () => handleProductEdit(product)} >
+                            <IconButton aria-label="Edit" onClick={() => handleProductEdit(product)} >
                                 <EditIcon />
                             </IconButton>
 
@@ -426,7 +307,7 @@ const Products = () => {
                             <Dialog
                                 open={open}
                                 onClose={handleClose}
-                                overlayStyle={{backgroundColor: 'transparent'}}
+                                overlayStyle={{ backgroundColor: 'transparent' }}
                                 aria-labelledby="alert-dialog-title"
                                 aria-describedby="alert-dialog-description"
                             >
@@ -472,7 +353,7 @@ const Products = () => {
                     Products Page will be designed here
                 </Typography> */}
 
-                <ToggleButtonGroup sx={{ marginTop: '30px', marginLeft: '10%' }} value={selectedCategory} exclusive onChange={handleCategoryChange}>
+                <ToggleButtonGroup sx={{  marginLeft: '20%' }} value={selectedCategory} exclusive onChange={handleCategoryChange}>
                     <ToggleButton value="all">All</ToggleButton>
 
                     {categories.map((category) => (
@@ -507,25 +388,23 @@ const Products = () => {
                     ))}
 
                 </Grid>
-
-                <Snackbar
-                    anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-                    open={snackOpen}
-                    onClose={handleSnackBarClose}
-                    message={message}
-                    key={message}
-                    autoHideDuration={6000}
-                    ContentProps={{
-                        sx: {
-                            color: "black",
-                            bgcolor: "lightgreen",
-                            fontWeight: "bold",
-                        }
-                    }}
-                />
-
-
             </Container>
+
+            <Snackbar
+                anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+                open={snackOpen}
+                onClose={handleSnackBarClose}
+                message={message}
+                key={message}
+                autoHideDuration={6000}
+                ContentProps={{
+                    sx: {
+                        color: "black",
+                        bgcolor: "lightgreen",
+                        fontWeight: "bold",
+                    }
+                }}
+            />
         </>
 
     );

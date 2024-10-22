@@ -9,13 +9,11 @@ import {
 } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import Grid from '@mui/material/Grid2';
-import { spacing, palette } from '@mui/system';
+import { spacing } from '@mui/system';
 import NavigationBar from '../../common/navigationBar/NavigationBar';
 import { Link, useNavigate } from 'react-router-dom';
 import Snackbar from '@mui/material/Snackbar';
-
-
-
+import CreatableSelect from 'react-select/creatable';
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -38,6 +36,14 @@ const useStyles = makeStyles((theme) => ({
 
 const AddProductAdmin = () => {
     const classes = useStyles();
+
+    // fetch list of categories from session storage 
+    const categoryList = sessionStorage.getItem("categories").split(",");
+    //set the input format as required by the react-select componenet. 
+    const categoryOptions = categoryList.map((item) => ({ value: item, label: item }))
+    // variable to receive selected options by react-select
+    const [selectedOptions, setSelectedOptions] = useState([]);
+
     const [name, setName] = useState('');
     const [category, setCategory] = useState('');
     const [price, setPrice] = useState(0);
@@ -52,8 +58,8 @@ const AddProductAdmin = () => {
 
     const [nameError, setNameError] = React.useState(false);
     const [nameErrorMessage, setNameErrorMessage] = React.useState('');
-    const [categoryError, setCategoryError] = React.useState(false);
-    const [categoryErrorMessage, setCategoryErrorMessage] = React.useState('');
+    // const [categoryError, setCategoryError] = React.useState(false);
+    // const [categoryErrorMessage, setCategoryErrorMessage] = React.useState('');
     const [priceError, setPriceError] = React.useState(false);
     const [priceErrorMessage, setPriceErrorMessage] = React.useState('');
     const [descriptionError, setDescriptionError] = React.useState(false);
@@ -81,10 +87,6 @@ const AddProductAdmin = () => {
             setName(value);
             setNameError(false);
             setNameErrorMessage('');
-        } else if (name === 'category') {
-            setCategory(value);
-            setCategoryError(false);
-            setCategoryErrorMessage('');
         } else if (name === 'price') {
             setPrice(parseInt(value))
             setPriceError(false);
@@ -106,6 +108,11 @@ const AddProductAdmin = () => {
             setImageUrlError(false);
             setImageUrlMessage('');
         }
+        // else if (name === 'category') {
+        //     setCategory(value);
+        //     setCategoryError(false);
+        //     setCategoryErrorMessage('');
+        // } 
 
     };
 
@@ -125,15 +132,15 @@ const AddProductAdmin = () => {
             setNameErrorMessage('');
         }
 
-        if (!category) {
-            setCategoryError(true);
-            setCategoryErrorMessage('please enter prodct category');
-            isValid = false;
-            return;
-        } else {
-            setCategoryError(false);
-            setCategoryErrorMessage('');
-        }
+        // if (!category) {
+        //     setCategoryError(true);
+        //     setCategoryErrorMessage('please enter prodct category');
+        //     isValid = false;
+        //     return;
+        // } else {
+        //     setCategoryError(false);
+        //     setCategoryErrorMessage('');
+        // }
 
         if (!priceRegex.test(price)) {
             setPriceError(true);
@@ -192,7 +199,8 @@ const AddProductAdmin = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        if (nameError || categoryError || priceError || descriptionError || manufacturerError || availableItemsError || imageUrlError) {
+        // if (nameError || categoryError || priceError || descriptionError || manufacturerError || availableItemsError || imageUrlError) {
+        if (nameError || priceError || descriptionError || manufacturerError || availableItemsError || imageUrlError) {
             event.preventDefault();
             console.log(name, category, price, price, manufacturer, availableItems, imageUrl);
             return;
@@ -237,7 +245,7 @@ const AddProductAdmin = () => {
             const data = await response.json();
 
             console.log('Product update successful!');
-            console.log('Response: ', data);
+            // console.log('Response: ', data);
 
             setSuccessMessage(`Product ${name} added succesfully`)
 
@@ -246,26 +254,32 @@ const AddProductAdmin = () => {
                 message: `Product ${name} added succesfully`
             });
 
-            // setTimeout(() => {
-            //     console.log('waiting for snack Bar');
-                
-            // }, 1000);
-
-            // navigate to products page
-            // navigate('/products');
             
+            // navigate to products page
+            navigate('/products');
+
         } catch (error) {
             console.log(error.message || 'An error occurred during product udpate');
             setErrorMessage('An error occurred during product udpate');
         } finally {
             setIsLoading(false); // Hide loading indicator 
-            
+
         }
     };
 
 
     const handleSnackBarClose = () => {
         setSnackBarState({ ...snackBarstate, snackOpen: false });
+    }
+
+    const handleSelectChange = (newValue) => {
+        setSelectedOptions(newValue);
+
+        if (newValue) {
+            setCategory(newValue.value);
+            console.log('selected Value: ', newValue.value);
+            console.log('selected Value: ', category);
+        }
     }
 
     return (
@@ -295,7 +309,18 @@ const AddProductAdmin = () => {
                             error={nameError}
                             helperText={nameErrorMessage}
                         />
-                        <TextField
+                        {categoryOptions ?
+                            <CreatableSelect
+                                isClearable
+                                options={categoryOptions}
+                                value={selectedOptions}
+                                onChange={handleSelectChange}
+                                placeholder="Select category"
+                            />
+                            :
+                            <></>
+                        }
+                        {/* <TextField
                             variant="outlined"
                             margin="normal"
                             required
@@ -308,7 +333,7 @@ const AddProductAdmin = () => {
                             onChange={handleChange}
                             error={categoryError}
                             helperText={categoryErrorMessage}
-                        />
+                        /> */}
                         <TextField
                             variant="outlined"
                             margin="normal"
@@ -400,7 +425,7 @@ const AddProductAdmin = () => {
                                     sx={{ textTransform: 'none', fontSize: 14 }}
                                     component={Link} to="/products"
                                 >
-                                   Cancel
+                                    Cancel
                                 </Button>
                             </Grid>
                         </Grid>
@@ -409,23 +434,23 @@ const AddProductAdmin = () => {
                             {errorMessage ? (<Typography variant="h6" color='error' align='center'>{errorMessage}</Typography>) : (<></>)}
                         </Grid>
                     </form>
-                    <Snackbar
-                        anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-                        open={snackOpen}
-                        onClose={handleSnackBarClose}
-                        message={message}
-                        key={message}
-                        // autoHideDuration={6000}
-                        ContentProps={{
-                            sx: {
-                                color: "black",
-                                bgcolor: "lightgreen",
-                                fontWeight: "bold",
-                            }
-                        }}
-                    />
                 </div>
             </Container>
+            <Snackbar
+                anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+                open={snackOpen}
+                onClose={handleSnackBarClose}
+                message={message}
+                key={message}
+                autoHideDuration={6000}
+                ContentProps={{
+                    sx: {
+                        color: "black",
+                        bgcolor: "lightgreen",
+                        fontWeight: "bold",
+                    }
+                }}
+            />
         </>
 
     );

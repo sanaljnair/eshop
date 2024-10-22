@@ -115,7 +115,7 @@ const Signin = () => {
             console.log('x-auth-token: ', response.headers.get('x-auth-token'));
 
             // const token = response.headers.get('x-auth-token');
-            const token = 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbkBkZW1vLmNvbSIsImlhdCI6MTcyOTU0MTU3NCwiZXhwIjoxNzI5NTQ5OTc0fQ.ErFxh5C_D2IZ7EtNSEVomvzqwnuw6ztClLewEhTxuzf73CSiDltg5FuancEhb-e-S-pPaAZ06l6qI56HS6J0DA';
+            const token = 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbkBkZW1vLmNvbSIsImlhdCI6MTcyOTYxMDE4NSwiZXhwIjoxNzI5NjE4NTg1fQ.0kULBT_evyBp8L-nRRTpz3WOL868jmgl7SEMNYjqjHxy2IKyN6G5cdvCEGPi0ZIciQEx89If-osX1lMkF7elmw';
 
             console.log('Login successful!');
             setLoginSuccessMessage('Login successful!');
@@ -157,7 +157,7 @@ const Signin = () => {
             <Container component="main" maxWidth="xs" sx={{ marginTop: '30px', minHeight: '85vh' }} >
                 <CssBaseline />
                 <div className={classes.paper}>
-                    <Avatar className={classes.avatar}>
+                    <Avatar className={classes.avatar} >
                         <LockOutlinedIcon />
                     </Avatar>
                     <Typography component="h1" variant="h5">

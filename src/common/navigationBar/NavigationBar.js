@@ -71,7 +71,7 @@ const NavigationBar = (props) => {
             <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
                 <Button
                     key="Home"
-                    sx={{ color: '#fff', textTransform: 'none', fontSize: 16 }}
+                    sx={{ color: '#fff', textTransform: 'none', fontSize: 16, textDecoration: 'underline' }}
                     component={Link} to="/"
                 >
                     Home
@@ -86,7 +86,7 @@ const NavigationBar = (props) => {
                 <Button
                     variant="contained"
                     key="Login"
-                    color="secondary"
+                    sx={{backgroundColor: 'red'}}
                     component={Link} to="/signin"
                 >
                     Login
@@ -102,7 +102,7 @@ const NavigationBar = (props) => {
                 <Button
                     variant="contained"
                     key="Logout"
-                    color="secondary"
+                    sx={{backgroundColor: 'red'}}
                     component={Link} to="/signin"
                 >
                     Logout
@@ -116,7 +116,7 @@ const NavigationBar = (props) => {
             <Box>
                 <Button
                     key="signin"
-                    sx={{ color: '#fff', textTransform: 'none', fontSize: 16 }}
+                    sx={{ color: '#fff', textTransform: 'none', fontSize: 16, textDecoration: 'underline' }}
                     component={Link} to="/signin"
                 >
                     Login
@@ -131,7 +131,7 @@ const NavigationBar = (props) => {
             <Box>
                 <Button
                     key="signin"
-                    sx={{ color: '#fff', textTransform: 'none', fontSize: 16 }}
+                    sx={{ color: '#fff', textTransform: 'none', fontSize: 16, textDecoration: 'underline' }}
                     component={Link} to="/signup"
                 >
                     SignUp
@@ -148,7 +148,7 @@ const NavigationBar = (props) => {
             <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
                 <Button
                     key="AddProduct"
-                    sx={{ color: '#fff', textTransform: 'none', fontSize: 16 }}
+                    sx={{ color: '#fff', textTransform: 'none', fontSize: 16, textDecoration: 'underline' }}
                     component={Link} to='/signin'                                           // <- change here 
                 >
                     Add Product
@@ -165,7 +165,7 @@ const NavigationBar = (props) => {
             <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
                 <Button
                     key="AddProduct"
-                    sx={{ color: '#fff', textTransform: 'none', fontSize: 16 }}
+                    sx={{ color: '#fff', textTransform: 'none', fontSize: 16, textDecoration: 'underline' }}
                     component={Link} to='/products/add'                                           // <- change here 
                 >
                     Add Product
