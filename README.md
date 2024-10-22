@@ -23,7 +23,13 @@ You may also see any lint errors in the console.
 #### Signup:
 ![image](https://github.com/user-attachments/assets/3234d37d-9faf-4d9a-bae5-65175dc8efc4)
 
+#### Succesfull Signup:
+
 ![image](https://github.com/user-attachments/assets/cc115181-ec07-41c9-a238-788c03a8e261)
+
+#### Unsuccesfull Signup:
+
+
 
 #### Login as Non Admin User:
 
@@ -40,12 +46,19 @@ Searched for Shoe:
 ![image](https://github.com/user-attachments/assets/9ff346fe-9e14-4bb8-bec0-d0ab4b396367)
 
 
-#### Sort By Price:
-![image](https://github.com/user-attachments/assets/246f8ba4-4419-4beb-a85c-d15e9b538bb5)
+#### Sort By Price (Non Admin User):
+![image](https://github.com/user-attachments/assets/5ab46696-6840-49d4-88b3-d63b6ec4eb97)
 
-#### Search Function on Products Screen.
 
-![image](https://github.com/user-attachments/assets/d5bee945-d719-4cce-b6ee-cf522fe94873)
+#### Product Details (Admin User).
+
+Login as Admin user
+
+![image](https://github.com/user-attachments/assets/077d8984-e8fb-40dc-bf6f-79fb2a1ae549)
+
+
+![image](https://github.com/user-attachments/assets/cbae3687-97fc-426d-bf4c-bd72de2a910e)
+
 
 
 #### Product Details Page
