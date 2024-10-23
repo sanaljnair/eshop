@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 import {
     Avatar,
@@ -12,7 +12,7 @@ import { makeStyles } from '@mui/styles';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 // import axios from 'axios'; // Import axios for API calls
 import Grid from '@mui/material/Grid2';
-import { spacing, palette } from '@mui/system';
+import { spacing } from '@mui/system';
 import NavigationBar from '../../common/navigationBar/NavigationBar';
 import { Link } from 'react-router-dom';
 

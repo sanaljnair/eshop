@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -58,8 +58,9 @@ const NavigationBar = (props) => {
 
 
     const page = props.page
+    const isAdmin = props.isAdmin;
     const isLoggedIn = props.isLoggedIn;
-    const [isAdmin, SetIsAdmin] = useState(props.isAdmin);
+    
     const [searchTerm, setSearchTerm] = useState('');
 
     // console.log('NavBar : page: ', page);

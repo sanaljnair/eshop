@@ -15,7 +15,7 @@ import Grid from '@mui/material/Grid2';
 import NavigationBar from '../../common/navigationBar/NavigationBar';
 import Box from '@mui/material/Box';
 import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 
 // 1) User will navigate form the products page to the product details page when the user clicks on the buy button on products page. 
@@ -34,32 +34,6 @@ import { useParams } from 'react-router-dom';
 // 	- add a input box with outlined edges and caption Enter Qunatity. use default value of 1 in the input field
 // 	- a Button for PLACE ORDER in contained button . this will navigate to the order page.
 
-// const productID = "66f7f44cea259f27abba20ea"
-
-// const productDetails = {
-//     "id": "66fe99ba69ee8833bb390ca21",
-//     "name": "iPhone 12",
-//     "category": "Electronics",
-//     "price": 10000,
-//     "description": "Its not a pant, its your partner",
-//     "manufacturer": "Louis Phillipe",
-//     "availableItems": 148,
-//     "imageUrl": "https://images.pexels.com/photos/603022/pexels-photo-603022.jpeg"
-// };
-
-// const categories1 = [
-//     "Cooking",
-//     "Clothing",
-//     "Clothes",
-//     "Electronics",
-//     "Watches",
-//     "Pants",
-//     "Shoes",
-//     "Sports",
-//     "Perfumes"
-// ]
-
-
 const ProductDetails = () => {
     //     const [isLoggedIn, setIsLoggedIn] = useState(sessionStorage.getItem('isLoggedIn'));
     //     const [isAdmin, setIsAdmin] = useState(sessionStorage.getItem('isAdmin'));
@@ -67,29 +41,21 @@ const ProductDetails = () => {
     const [categories, setCategories] = useState([]);
     const [productDetails, setProductDetails] = useState(null);
     const [selectedCategory, setSelectedCategory] = useState('all');
-    const [order, setOrder] = React.useState({});
     const [quantity, setQuantity] = useState(1);
-
     const [quantityError, setQuantityError] = React.useState(false);
     const [quantityErrorMessage, setQuantityErrorMessage] = React.useState('');
 
     const { productID } = useParams();
 
-    // console.log('product details page: isAdmin: ', isAdmin);
-    // console.log('products details page: isLoggedin: ', isLoggedIn);
-    // console.log('products details page: accessToken: ', accessToken);
-    console.log('products details page: productID: ', productID);
-
-
+    // console.log('products details page: productID: ', productID);
 
     const navigate = useNavigate();
 
-
+    //*------------------------------  Get List of Categories
     async function getCategories() {
         // console.log('*-------- inside getCategories  -----------*')
 
         try {
-
             const response = await fetch('https://dev-project-ecommerce.upgrad.dev/api/products/categories', {
                 method: 'GET',
                 mode: 'cors',
@@ -108,19 +74,17 @@ const ProductDetails = () => {
 
             // console.log(response.headers.get('x-auth-token'));
             console.log('get Categories Succesfull');
-            console.log('get category response data: ', data);
-            console.log('categories: ', categories);
-
+            // console.log('get category response data: ', data);
+            // console.log('categories: ', categories);
         }
         catch (error) {
             console.log(error.message || 'An error occurred during login');
         }
-
     }
 
     useEffect(() => { getCategories(); }, []);
 
-    //------------------------------
+    //------------------------------ Fetch Product Details
 
     async function fetchProductData() {
         // console.log('*-------- inside fetchProductData  -----------*')
@@ -145,14 +109,13 @@ const ProductDetails = () => {
 
             // console.log(response.headers.get('x-auth-token'));
             console.log('get Product Details Succesfull');
-            console.log('get Products response data: ', data);
-            console.log('productDetails: ', productDetails);
+            // console.log('get Products response data: ', data);
+            // console.log('productDetails: ', productDetails);
 
         }
         catch (error) {
             console.log(error.message || 'An error occurred during login');
         }
-
     }
 
     useEffect(() => {
@@ -163,7 +126,7 @@ const ProductDetails = () => {
 
 
     const handleCategoryChange = (event, newCategory) => {
-        console.log('*----------- inside handleCategoryChange -------*')
+        // console.log('*----------- inside handleCategoryChange -------*')
         // console.log('newCategory: ', newCategory);
 
         setSelectedCategory(newCategory);
@@ -171,9 +134,8 @@ const ProductDetails = () => {
 
     };
 
+    // Navigate to order page with product details and quantity
     const handlePlaceOrder = () => {
-        // Navigate to order page with product details and quantity
-        console.log('*----------- inside handleCategoryChange -------*')
 
         if (!quantity) {
             setQuantityError(true);
@@ -191,29 +153,21 @@ const ProductDetails = () => {
                     "address": null
                 }
             }
-            
 
             navigate("/order", { state: data });
 
-
         }
-
-
-
     }
 
-    const handleQualtityChange = (event) => {
+    const handleQuantityChange = (event) => {
         const { name, value } = event.target;
 
         setQuantity(value);
         setQuantityError(false);
         setQuantityErrorMessage('');
-
     }
 
-
     const RenderCategories = () => {
-
         return (<ToggleButtonGroup sx={{  marginLeft: '20%' }} value={selectedCategory} exclusive onChange={handleCategoryChange}>
             <ToggleButton value="all">All</ToggleButton>
 
@@ -285,7 +239,7 @@ const ProductDetails = () => {
                             id="quantity"
                             name="quantity"
                             margin="normal"
-                            onChange={handleQualtityChange}
+                            onChange={handleQuantityChange}
                             error={quantityError}
                             helperText={quantityErrorMessage}
                         />
@@ -308,7 +262,6 @@ const ProductDetails = () => {
 
             <Container sx={{ marginTop: '30px', minHeight: '85vh' }} >
                 <CssBaseline />
-
 
                 {categories ? <RenderCategories /> : <></>}
 

@@ -1,6 +1,5 @@
 import React from 'react';
 import { Typography, Link, Box } from '@mui/material';
-import CopyrightIcon from '@mui/icons-material/Copyright'; // Import CopyrightIcon
 
 const Footer = () => {
     return (

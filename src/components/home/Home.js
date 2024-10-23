@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
 import {
     CssBaseline,
@@ -10,10 +10,9 @@ import NavigationBar from '../../common/navigationBar/NavigationBar';
 
 
 const Home = () => {
-    const [isLoggedIn,setIsLoggedIn] = useState(sessionStorage.getItem('isLoggedIn'));
-    const [isAdmin, setIsAdmin] = useState(sessionStorage.getItem('isAdmin'));
-    const [accessToken, setAccessToken] = useState(sessionStorage.getItem('access-token'));
-
+    const isLoggedIn = sessionStorage.getItem('isLoggedIn');
+    const isAdmin = sessionStorage.getItem('isAdmin');
+    
     // console.log('Home page: isAdmin: ', isAdmin , typeof isAdmin);
     // console.log('Home page: isLoggedin: ', isLoggedIn, typeof isLoggedIn);
     // console.log('Home page: accessToken: ', accessToken);

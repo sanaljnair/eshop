@@ -1,14 +1,12 @@
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
 
-import { CssBaseline } from '@mui/material';
-import NavigationBar from './common/navigationBar/NavigationBar.js'
 import Footer from './common/footer/Footer.js'
 import Signin from './components/signin/Signin.js'
 import SignUp from './components/signup/SignUp.js'
-
 import Home from './components/home/Home.js'
 import Products from './components/products/Products.js'
 import ProductDetails from './components/productDetails/ProductDetails.js'
-import { Routes, Route, Link } from 'react-router-dom';
 import UpdateProductAdmin from './components/updateProductAdmin/UpdateProductAdmin.js'
 import AddProductAdmin from './components/addProductAdmin/AddProductAdmin.js';
 import PlaceOrder from './components/placeOrder/PlaceOrder.js'

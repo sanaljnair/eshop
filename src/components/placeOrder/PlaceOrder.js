@@ -1,21 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import Container from '@mui/material/Box';
 import Box from '@mui/material/Box';
-import { CssBaseline, TextField, } from '@mui/material';
 import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepButton from '@mui/material/StepButton';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import { makeStyles } from '@mui/styles';
-import { spacing } from '@mui/system';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Grid from '@mui/material/Grid2';
-import { Link, useNavigate } from 'react-router-dom';
 import Snackbar from '@mui/material/Snackbar';
+import { spacing } from '@mui/system';
+import { makeStyles } from '@mui/styles';
+import { useNavigate } from 'react-router-dom';
+import { CssBaseline, TextField, } from '@mui/material';
 import { useLocation } from "react-router-dom";
 import NavigationBar from '../../common/navigationBar/NavigationBar';
 import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
@@ -47,16 +47,17 @@ export default function PlaceOrder() {
     const location = useLocation();
     const input = location.state;
 
-    console.log('inside order page: ');
-    console.log('order: ', input.order);
-    console.log('productDetails: ', input.productDetails);
+    // console.log('inside order page: ');
+    // console.log('order: ', input.order);
+    // console.log('productDetails: ', input.productDetails);
+
+    const productDetails = input.productDetails;
 
     // State variables for Stepper functions
     const [activeStep, setActiveStep] = React.useState(1);
     const [completed, setCompleted] = React.useState({ 0: true });
     const [addressList, setAddressList] = useState([]);
     const [address, setAddress] = React.useState('');
-    const [productDetails, setProductDetails] = React.useState(input.productDetails);
     const [order, setOrder] = React.useState(input.order);
 
     //State variables for Add Address Form elements and validations
@@ -163,10 +164,6 @@ export default function PlaceOrder() {
         }
         catch (error) {
             console.log(error.message || 'An error occurred during get address list');
-        } finally {
-
-            console.log('addressList: ', addressList);
-
         }
 
     }
@@ -419,7 +416,7 @@ export default function PlaceOrder() {
     // *--------------------------------------- Page Navigation Functions ----------------------------******************
 
     // Navigate back to Product Details Page. 
-    
+
     const handleBackToDetails = () => {
         navigate(`/productDetails/${order.product}`);
     }
@@ -452,7 +449,7 @@ export default function PlaceOrder() {
             setActiveStep(newActiveStep);
         }
 
-    };    
+    };
 
     const handleBack = () => {
         setActiveStep((prevActiveStep) => prevActiveStep - 1);
@@ -463,7 +460,7 @@ export default function PlaceOrder() {
     };
 
     const handleComplete = () => {
-        
+
         setCompleted({
             ...completed,
             [activeStep]: true,
@@ -763,19 +760,6 @@ export default function PlaceOrder() {
                         ))}
                     </Stepper>
                     <div>
-                        {/* {allStepsCompleted() ? (                                                 -------- delete during cleanup
-                            <React.Fragment>
-                                <Typography sx={{ mt: 2, mb: 1 }}>
-                                    All steps completed - you&apos;re finished
-                                </Typography>
-                                <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
-                                    <Box sx={{ flex: '1 1 auto' }} />
-                                    <Button onClick={handleReset}>Reset</Button>
-                                </Box>
-                            </React.Fragment>
-                        ) : ( */}
-
-
                         <React.Fragment>
                             {activeStep === 1 ?
                                 <RenderSelectAddress />
@@ -787,9 +771,6 @@ export default function PlaceOrder() {
                                         <></>
                                 )
                             }
-
-
-                            {/* )}                                                                    -------- delete during cleanup */}
                         </React.Fragment>
                     </div>
                 </Box>

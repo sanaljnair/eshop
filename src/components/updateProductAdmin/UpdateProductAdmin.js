@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 import {
     Button,
@@ -9,7 +9,7 @@ import {
 } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import Grid from '@mui/material/Grid2';
-import { spacing, palette } from '@mui/system';
+import { spacing } from '@mui/system';
 import NavigationBar from '../../common/navigationBar/NavigationBar';
 import { Link, useNavigate } from 'react-router-dom';
 import Snackbar from '@mui/material/Snackbar';
@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
 
 const UpdateProductAdmin = () => {
     const classes = useStyles();
-    const [product, setProduct] = useState(JSON.parse(sessionStorage.getItem('product')));
+    const product = useState(JSON.parse(sessionStorage.getItem('product')));
 
     console.log('product: ', product.id, product.name);
 

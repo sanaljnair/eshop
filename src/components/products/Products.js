@@ -7,7 +7,6 @@ import {
     Card,
     CardMedia,
     CardContent,
-    CardActions,
     Button,
     ToggleButtonGroup,
     ToggleButton,
@@ -22,7 +21,7 @@ import NavigationBar from '../../common/navigationBar/NavigationBar';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
@@ -31,9 +30,9 @@ import DialogTitle from '@mui/material/DialogTitle';
 import Snackbar from '@mui/material/Snackbar';
 
 const Products = () => {
-    const [isLoggedIn, setIsLoggedIn] = useState(sessionStorage.getItem('isLoggedIn'));
-    const [isAdmin, setIsAdmin] = useState(sessionStorage.getItem('isAdmin'));
-    // const [accessToken, setAccessToken] = useState(sessionStorage.getItem('access-token'));
+    const isLoggedIn = sessionStorage.getItem('isLoggedIn');
+    const isAdmin = sessionStorage.getItem('isAdmin');
+
     const [productList, setProductList] = useState([]);
     const [categories, setCategories] = useState([]);
     const [open, setOpen] = useState(false);
@@ -49,10 +48,10 @@ const Products = () => {
 
     const navigate = useNavigate();
 
+    // Fetch List of Categories
     async function getCategories() {
 
         try {
-
             const response = await fetch('https://dev-project-ecommerce.upgrad.dev/api/products/categories', {
                 method: 'GET',
                 mode: 'cors',
@@ -69,25 +68,24 @@ const Products = () => {
             const data = await response.json();
             setCategories(data);
 
-            sessionStorage.setItem("categories",data)
+            sessionStorage.setItem("categories", data)
 
             // console.log(response.headers.get('x-auth-token'));
             console.log('get Categories Succesfull: ');
-            // console.log('get category response data: ', data, 'typeof: ' , typeof(data));
 
         }
         catch (error) {
             console.log(error.message || 'An error occurred during get category list');
-        } 
+        }
     }
 
     useEffect(() => { getCategories(); }, []);
 
+    // Fetch List of Products from Backend
     async function getProduts() {
         // console.log('*-------- inside getProducts -----------*')
 
         try {
-
             const response = await fetch('https://dev-project-ecommerce.upgrad.dev/api/products/', {
                 method: 'GET',
                 mode: 'cors',
@@ -103,32 +101,22 @@ const Products = () => {
 
             const data = await response.json();
             setProductList(data);
-            // setProductList(productsData);
 
             // console.log(response.headers.get('x-auth-token'));
             console.log('get Products Succesfull');
             // console.log('get Products response data: ', data);
-
         }
         catch (error) {
             console.log(error.message || 'An error occurred during get product list');
-        } finally {
-            console.log('productList: ', productList);
-
         }
-
     }
-
-
 
     useEffect(() => { getProduts(); }, []);
 
     async function deleteProduct(product) {
         // console.log('*-------- inside deleteProduct -----------*')
-        // console.log('deleting: ', product.id, product.name)
 
         try {
-
             const response = await fetch(`https://dev-project-ecommerce.upgrad.dev/api/products/${product.id}`, {
                 method: 'DELETE',
                 mode: 'cors',
@@ -137,8 +125,6 @@ const Products = () => {
                     'x-auth-token': sessionStorage.getItem('access-token'),
                 }
             });
-
-            // console.log('API request submited');
 
             if (!response.ok) {
                 throw new Error(`API request failed with status ${response.status}`);
@@ -155,16 +141,10 @@ const Products = () => {
         }
         catch (error) {
             console.log(error.message || 'An error occurred during delete product');
-        } finally {
-            console.log('productList: ', productList);
-
         }
-
-
     }
 
     const handleCategoryChange = (event, newCategory) => {
-        // console.log('newCategory: ', newCategory);
 
         setSelectedCategory(newCategory);
         filterProducts(newCategory);
@@ -182,7 +162,6 @@ const Products = () => {
         } else {
             // getProduts()
             setProductList(productList.filter((product) => product.category === category));
-
         }
     };
 
@@ -244,9 +223,7 @@ const Products = () => {
 
     const ProductCard = ({ product }) => {
 
-
         return (
-
             <Card sx={{ maxWidth: 345, borderRadius: 4, width: '400px', height: ' 400px', boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)' }} >
                 <CardMedia
                     sx={{ height: 200 }}
@@ -257,19 +234,16 @@ const Products = () => {
                 <CardContent sx={{ padding: '16px', height: 135 }}>
                     <Grid container justifyContent="space-between">
                         <Grid>
-                            <Typography gutterBottom variant="h6" component="div">
+                            <Typography gutterBottom variant="h6" component="div"   >
                                 {product.name}
                             </Typography>
-
                         </Grid>
                         <Grid container justifyContent="space-between"  >
                             <CurrencyRupeeIcon fontSize="medium" />
                             <Typography gutterBottom variant="h6" component="div">
                                 {product.price}
                             </Typography>
-
                         </Grid>
-
                     </Grid>
 
                     <Typography variant="body2" sx={{ color: 'text.secondary' }}>
@@ -339,8 +313,6 @@ const Products = () => {
 
     }
 
-    // console.log('products: isAdmin: ', isAdmin);
-
     return (
         <>
             <NavigationBar page="products" isLoggedIn={isLoggedIn} isAdmin={isAdmin} onSearch={handleSearch} />
@@ -353,7 +325,7 @@ const Products = () => {
                     Products Page will be designed here
                 </Typography> */}
 
-                <ToggleButtonGroup sx={{  marginLeft: '20%' }} value={selectedCategory} exclusive onChange={handleCategoryChange}>
+                <ToggleButtonGroup sx={{ marginLeft: '20%' }} value={selectedCategory} exclusive onChange={handleCategoryChange}>
                     <ToggleButton value="all">All</ToggleButton>
 
                     {categories.map((category) => (

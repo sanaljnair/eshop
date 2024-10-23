@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 import {
     Button,
@@ -242,7 +242,7 @@ const AddProductAdmin = () => {
                 throw new Error(`API request failed with status ${response.status}`);
             }
 
-            const data = await response.json();
+            // const data = await response.json();
 
             console.log('Product update successful!');
             // console.log('Response: ', data);

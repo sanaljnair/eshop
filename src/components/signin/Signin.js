@@ -1,18 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 import {
     Avatar,
     Button,
     CssBaseline,
     TextField,
-    Box,
     Typography,
     Container,
 } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Grid from '@mui/material/Grid2';
-import { spacing, palette } from '@mui/system';
+import { spacing } from '@mui/system';
 import NavigationBar from '../../common/navigationBar/NavigationBar';
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -28,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: 'red',
     },
     form: {
-        width: '100%', // Make form fill available width
+        width: '100%',  
         marginTop: spacing(1),
     },
     submit: {
@@ -54,7 +53,8 @@ const Signin = () => {
 
     const navigate = useNavigate();
 
-    const emailRegex = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/; // Improved email validation
+    // Email validation regular expression
+    const emailRegex = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;  
 
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -74,14 +74,13 @@ const Signin = () => {
             return;
         }
 
-
-
-        setIsLoading(true); // Show loading indicator
+        // Show loading indicator
+        setIsLoading(true); 
         const username = email;
 
-        console.log('Making API Call')
-        console.log('username: ', username);
-        console.log('password: ', password);
+        // console.log('Making API Call')
+        // console.log('username: ', username);
+        // console.log('password: ', password);
 
         const body = {
             username,
@@ -115,7 +114,8 @@ const Signin = () => {
             console.log('x-auth-token: ', response.headers.get('x-auth-token'));
 
             // const token = response.headers.get('x-auth-token');
-            const token = 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbkBkZW1vLmNvbSIsImlhdCI6MTcyOTYxMDE4NSwiZXhwIjoxNzI5NjE4NTg1fQ.0kULBT_evyBp8L-nRRTpz3WOL868jmgl7SEMNYjqjHxy2IKyN6G5cdvCEGPi0ZIciQEx89If-osX1lMkF7elmw';
+            // workaround to use constant token as backend needs configuration to respond with token.
+            const token = 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbkBkZW1vLmNvbSIsImlhdCI6MTcyOTY3ODM2MSwiZXhwIjoxNzI5Njg2NzYxfQ.MuoN_YHEsTWdtHwQy1iQapV9XHUQp-Ax-M5VYKtad74oQBS1i8aQ8EQN18x6U5XFBbdNtn7A4ekzlR5SHjerHg';
 
             console.log('Login successful!');
             setLoginSuccessMessage('Login successful!');
@@ -129,7 +129,7 @@ const Signin = () => {
                 sessionStorage.setItem('isAdmin', true);
             }
             //   Store token (consider using localStorage or a stte management library)
-            sessionStorage.setItem('isLoggedIn', true);
+            // sessionStorage.setItem('isLoggedIn', true);
             sessionStorage.setItem('access-token', token);
             // sessionStorage.setItem('data', data);
 

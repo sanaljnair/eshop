@@ -1,36 +1,57 @@
 import React, { useState, useEffect } from 'react';
 import Snackbar from '@mui/material/Snackbar';
+import Alert from '@mui/material/Alert';
 
 
-export default function EshopSnackbar(props) {
+export default function EshopSnackbar({open, handleClose, message, severity}) {
 
-    const [snackBarstate, setSnackBarState] = React.useState({
-        snackOpen: false,
-        message: ''
-    });
+    const [open, setOpen] = React.useState(false);
 
-    const { snackOpen, message } = snackBarstate;
-
-    const handleSnackBarClose = () => {
-        setSnackBarState({ ...snackBarstate, snackOpen: false });
-    }
-
+    const handleClick = () => {
+      setOpen(true);
+    };
+  
+    const handleClose = (event, reason) => {
+      if (reason === 'clickaway') {
+        return;
+      }
+  
+      setOpen(false);
+    };
+  
     return (
-        <Snackbar
-            anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-            open={snackOpen}
-            onClose={handleSnackBarClose}
-            message={message}
-            key={message}
-            // autoHideDuration={6000}
-            ContentProps={{
-                sx: {
-                    color: "black",
-                    bgcolor: "lightgreen",
-                    fontWeight: "bold",
-                }
-            }}
-        />
+      <div>
+        <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+          <Alert
+            onClose={handleClose}
+            severity={severity}
+            variant="filled"
+            sx={{ width: '100%' }}
+          >
+            {message}
+          </Alert>
+        </Snackbar>
+      </div>
     );
 
+    // return (
+    //     <Snackbar
+    //         anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+    //         open={open}
+    //         onClose={onClose}
+    //         message={message}
+    //         severity={severity}
+    //         autoHideDuration={6000}
+    //         // key={message}
+    //         // ContentProps={{
+    //         //     sx: {
+    //         //         color: "black",
+    //         //         bgcolor: "lightgreen",
+    //         //         fontWeight: "bold",
+    //         //     }
+    //         // }}
+    //     />
+    // );
+
 }
+
