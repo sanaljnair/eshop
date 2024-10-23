@@ -14,6 +14,16 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
+#### Workaround to be applied to maintain access token. 
+
+As mentioned in issues, i am unable to fetch access token from backend. hence workaround is used to hardcode access token receied on postman.
+
+update access token in : /components/signin/Signin.js  -> 
+
+![image](https://github.com/user-attachments/assets/2c19d465-d0f4-4cac-929e-f64d76e39468)
+
+
+
 #### Screen Shots form the Application. 
 
 #### Home Page when user is not logged in. 
