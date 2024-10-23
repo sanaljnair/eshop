@@ -2,7 +2,7 @@
 
 This project was created as part of the Assignments for MS in Computer S
 
-## Instalation Steps. 
+# Instalation Steps. 
 
 In the project directory, you can run:
 
@@ -24,13 +24,13 @@ update access token in : /components/signin/Signin.js  ->   (hardcoded access to
 
 
 
-#### Screen Shots form the Application. 
+# Screen Shots form the Application. 
 
-#### Home Page when user is not logged in. 
+## Home Page when user is not logged in. 
 
 ![image](https://github.com/user-attachments/assets/bfd16419-da27-4582-9d21-5a8bfcfd62db)
 
-#### Signup:
+## Signup: Signup page for new user Sign up
 ![image](https://github.com/user-attachments/assets/3234d37d-9faf-4d9a-bae5-65175dc8efc4)
 
 #### Succesfull Signup:
@@ -47,7 +47,7 @@ Error message for negetive response form the APi
 ![image](https://github.com/user-attachments/assets/11dbfd98-36e3-4f27-9fd4-95f0f124f266)
 
 
-#### Login as Non Admin User:
+## Login as Non Admin User:
 
 ![image](https://github.com/user-attachments/assets/5771c28d-9dfb-4073-b89e-463d940c0268)
 
@@ -72,9 +72,10 @@ Note: Search Bar is available only on the product page.
 ![image](https://github.com/user-attachments/assets/5ab46696-6840-49d4-88b3-d63b6ec4eb97)
 
 
+## Login as Admin user
+
 #### Product Details (Admin User).
 
-Login as Admin user
 
 ![image](https://github.com/user-attachments/assets/077d8984-e8fb-40dc-bf6f-79fb2a1ae549)
 
@@ -87,18 +88,18 @@ Login as Admin user
 
 
 
-
 #### Edit Existing Product (Only using Admin Login)
+
 
 #### Delete Product (Only using Admin Login)
 
 
-#### Product Details Page
+## Product Details Page
 
 ![image](https://github.com/user-attachments/assets/020a85d6-8a2b-4b86-8ac6-bba3f02a53ec)
 
 
-#### Place Order Page
+## Place Order Page
 
 ![image](https://github.com/user-attachments/assets/13909a81-dddb-4e00-9088-d32192408e7e)
 
