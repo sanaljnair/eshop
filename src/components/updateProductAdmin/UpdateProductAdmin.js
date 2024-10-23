@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
 
 const UpdateProductAdmin = () => {
     const classes = useStyles();
-    const product = useState(JSON.parse(sessionStorage.getItem('product')));
+    const product = JSON.parse(sessionStorage.getItem('product'));
 
     console.log('product: ', product.id, product.name);
 
