@@ -96,23 +96,37 @@ Note: Search Bar is available only on the product page.
 
 ## Product Details Page
 
-![image](https://github.com/user-attachments/assets/020a85d6-8a2b-4b86-8ac6-bba3f02a53ec)
+![image](https://github.com/user-attachments/assets/0206eea7-2bb4-4c70-bbb8-3d898aa78a12)
+
 
 
 ## Place Order Page
 
-![image](https://github.com/user-attachments/assets/13909a81-dddb-4e00-9088-d32192408e7e)
+#### Step 1: items 
 
-#### After selecting Address
+![image](https://github.com/user-attachments/assets/3bf03338-0071-47ef-9324-f743d373c606)
 
-![image](https://github.com/user-attachments/assets/7cca0403-6ae6-41f7-9a65-9f6c50b4e519)
+#### Step 2: Select Address 
 
+selecting Address is mandatory, else show error. 
 
-![image](https://github.com/user-attachments/assets/023872b4-cf13-4f43-b4c3-114d1165df32)
+![image](https://github.com/user-attachments/assets/543a3be7-ea4f-4f51-9678-2f2c7fbf6e39)
+
+after sellecting Address. 
+
+![image](https://github.com/user-attachments/assets/cd94b4a2-7764-47b1-b8df-9a09be9bf273)
+
+error scenario:
+
+![image](https://github.com/user-attachments/assets/d1115866-6ff1-4012-9aef-2c0768b38829)
+
 
 #### Order Confirmation Page
 
-![image](https://github.com/user-attachments/assets/5d71a582-3e4d-4bd4-9fe5-a83c3386bd7c)
+![image](https://github.com/user-attachments/assets/490200e7-170d-46ca-a373-886bf0a04e5e)
+
+Place order will take back to Products page. 
+
 
 
 
