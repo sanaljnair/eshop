@@ -18,7 +18,7 @@ You may also see any lint errors in the console.
 
 As mentioned in issues, i am unable to fetch access token from backend. hence workaround is used to hardcode access token receied on postman.
 
-update access token in : /components/signin/Signin.js  -> 
+update access token in : /components/signin/Signin.js  ->   (hardcoded access token will work only for few hours.)
 
 ![image](https://github.com/user-attachments/assets/2c19d465-d0f4-4cac-929e-f64d76e39468)
 
