@@ -14,6 +14,16 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
+#### Workaround to be applied to maintain access token. 
+
+As mentioned in issues, i am unable to fetch access token from backend. hence workaround is used to hardcode access token receied on postman.
+
+update access token in : /components/signin/Signin.js  -> 
+
+![image](https://github.com/user-attachments/assets/2c19d465-d0f4-4cac-929e-f64d76e39468)
+
+
+
 #### Screen Shots form the Application. 
 
 #### Home Page when user is not logged in. 
@@ -23,11 +33,25 @@ You may also see any lint errors in the console.
 #### Signup:
 ![image](https://github.com/user-attachments/assets/3234d37d-9faf-4d9a-bae5-65175dc8efc4)
 
+#### Succesfull Signup:
+
 ![image](https://github.com/user-attachments/assets/cc115181-ec07-41c9-a238-788c03a8e261)
+
+#### Signup errors:
+
+![image](https://github.com/user-attachments/assets/0986ebc1-4cfb-46c3-af4f-5978fd35cbe4)
+
+![image](https://github.com/user-attachments/assets/f641bc6b-67dd-4add-8b32-a2b3e303d9a0)
+
 
 #### Login as Non Admin User:
 
 ![image](https://github.com/user-attachments/assets/5771c28d-9dfb-4073-b89e-463d940c0268)
+
+Login Error: 
+
+![image](https://github.com/user-attachments/assets/54b68420-0d1f-4352-973a-d6f86081fef0)
+
 
 #### Products Listing (Non- Admin User):
 
@@ -40,12 +64,29 @@ Searched for Shoe:
 ![image](https://github.com/user-attachments/assets/9ff346fe-9e14-4bb8-bec0-d0ab4b396367)
 
 
-#### Sort By Price:
-![image](https://github.com/user-attachments/assets/246f8ba4-4419-4beb-a85c-d15e9b538bb5)
+#### Sort By Price (Non Admin User):
+![image](https://github.com/user-attachments/assets/5ab46696-6840-49d4-88b3-d63b6ec4eb97)
 
-#### Search Function on Products Screen.
 
-![image](https://github.com/user-attachments/assets/d5bee945-d719-4cce-b6ee-cf522fe94873)
+#### Product Details (Admin User).
+
+Login as Admin user
+
+![image](https://github.com/user-attachments/assets/077d8984-e8fb-40dc-bf6f-79fb2a1ae549)
+
+
+![image](https://github.com/user-attachments/assets/cbae3687-97fc-426d-bf4c-bd72de2a910e)
+
+#### Add New Product (Only using Admin Login)
+
+![image](https://github.com/user-attachments/assets/13a779c3-ca37-47e9-ae01-aedd7ea0da86)
+
+
+
+
+#### Edit Existing Product (Only using Admin Login)
+
+#### Delete Product (Only using Admin Login)
 
 
 #### Product Details Page
