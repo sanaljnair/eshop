@@ -27,13 +27,21 @@ You may also see any lint errors in the console.
 
 ![image](https://github.com/user-attachments/assets/cc115181-ec07-41c9-a238-788c03a8e261)
 
-#### Unsuccesfull Signup:
+#### Signup errors:
 
+![image](https://github.com/user-attachments/assets/0986ebc1-4cfb-46c3-af4f-5978fd35cbe4)
+
+![image](https://github.com/user-attachments/assets/f641bc6b-67dd-4add-8b32-a2b3e303d9a0)
 
 
 #### Login as Non Admin User:
 
 ![image](https://github.com/user-attachments/assets/5771c28d-9dfb-4073-b89e-463d940c0268)
+
+Login Error: 
+
+![image](https://github.com/user-attachments/assets/54b68420-0d1f-4352-973a-d6f86081fef0)
+
 
 #### Products Listing (Non- Admin User):
 
