@@ -115,7 +115,7 @@ const Signin = () => {
 
             // const token = response.headers.get('x-auth-token');
             // workaround to use constant token as backend needs configuration to respond with token.
-            const token = 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbkBkZW1vLmNvbSIsImlhdCI6MTcyOTY3ODM2MSwiZXhwIjoxNzI5Njg2NzYxfQ.MuoN_YHEsTWdtHwQy1iQapV9XHUQp-Ax-M5VYKtad74oQBS1i8aQ8EQN18x6U5XFBbdNtn7A4ekzlR5SHjerHg';
+            const token = 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbkBkZW1vLmNvbSIsImlhdCI6MTcyOTY4ODY0NCwiZXhwIjoxNzI5Njk3MDQ0fQ.Xql7xB5-cEbbyZ3s9iOQsDQt-aer9z7XrGebZG2b8b7H8VbosNq_IgD-E6uZ4dQS7IVFubT52q0LDixyZXzDqg';
 
             console.log('Login successful!');
             setLoginSuccessMessage('Login successful!');

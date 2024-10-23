@@ -197,7 +197,7 @@ const ProductDetails = () => {
 
                 <div spacing={2}  >
                     <div style={{ display: 'flex' }}>
-                        <Typography variant='h4' sx={{ maxWidth: 400 }}><b>{productDetails.name}</b></Typography>
+                        <Typography variant='h4' sx={{ maxWidth: 300 }}><b>{productDetails.name}</b></Typography>
 
                         <Box
                             sx={{

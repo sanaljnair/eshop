@@ -12,6 +12,8 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Grid from '@mui/material/Grid2';
 import Snackbar from '@mui/material/Snackbar';
+import Card from '@mui/material/Card'
+import CardMedia from '@mui/material/CardMedia'
 import { spacing } from '@mui/system';
 import { makeStyles } from '@mui/styles';
 import { useNavigate } from 'react-router-dom';
@@ -54,8 +56,8 @@ export default function PlaceOrder() {
     const productDetails = input.productDetails;
 
     // State variables for Stepper functions
-    const [activeStep, setActiveStep] = React.useState(1);
-    const [completed, setCompleted] = React.useState({ 0: true });
+    const [activeStep, setActiveStep] = React.useState(0);
+    const [completed, setCompleted] = React.useState({});
     const [addressList, setAddressList] = useState([]);
     const [address, setAddress] = React.useState('');
     const [order, setOrder] = React.useState(input.order);
@@ -712,34 +714,125 @@ export default function PlaceOrder() {
                         >
                             {isLoading ? 'loading...' : 'SAVE ADDRESS'}
                         </Button>
-                        <Grid container paddingTop={2} spacing={3} justifyContent="space-evenly">
-                            <Grid xs={12} >
-                                <Button
-                                    color="primary"
-                                    disabled={activeStep === 0}
-                                    onClick={handleBackToDetails}
-                                    sx={{ mr: 1, fontSize: 14 }}
-                                >
-                                    BACK
-                                </Button>
-
-                                <Button
-                                    variant="contained"
-                                    onClick={handleNext}
-                                    sx={{ mr: 1, bgcolor: "#3f51b5", fontSize: 14 }}
-                                >
-                                    NEXT
-                                </Button>
-                            </Grid>
-                        </Grid>
-                        <Grid>
-                            {successMessage ? (<Typography variant="h6" color='primary' align='center'>{successMessage}</Typography>) : (<></>)}
-                            {errorMessage ? (<Typography variant="h6" color='error' align='center'>{errorMessage}</Typography>) : (<></>)}
-                        </Grid>
                     </form>
+                    <Grid container paddingTop={2} spacing={3} justifyContent="space-evenly">
+                        <Grid xs={12} >
+                            <Button
+                                color="primary"
+                                onClick={handleBack}
+                                sx={{ mr: 1, fontSize: 14 }}
+                            >
+                                BACK
+                            </Button>
+
+                            <Button
+                                variant="contained"
+                                onClick={handleNext}
+                                sx={{ mr: 1, bgcolor: "#3f51b5", fontSize: 14 }}
+                            >
+                                NEXT
+                            </Button>
+                        </Grid>
+                    </Grid>
+                    <Grid>
+                        {successMessage ? (<Typography variant="h6" color='primary' align='center'>{successMessage}</Typography>) : (<></>)}
+                        {errorMessage ? (<Typography variant="h6" color='error' align='center'>{errorMessage}</Typography>) : (<></>)}
+                    </Grid>
                 </Box>
             </div>
 
+        );
+    }
+
+    const RenderItemDetails = () => {
+
+        return (
+            <Grid container spacing={2} justifyContent='space-between' alignItems="center">
+                <Grid size={6}>
+                    <Box
+                        sx={{
+                            bgcolor: 'white',
+                            mt: 2,
+                            p: 4,
+                            pt: 5,
+                            minWidth: 200,
+                            textAlign: 'left',
+                            height: 300
+                        }}>
+
+                        <Card >
+                            <CardMedia
+
+                                component="img"
+                                alt={productDetails.name}
+                                image={productDetails.imageUrl}
+                                height="250"
+                                width="200"
+                            />
+                        </Card>
+                    </Box>
+
+                </Grid>
+                <Grid size={6}>
+
+                    <Box
+                        sx={{
+                            bgcolor: 'white',
+                            mt: 2,
+                            p: 4,
+                            pt: 5,
+                            minWidth: 200,
+                            textAlign: 'left',
+                            height: 300
+                        }}>
+
+
+                        <div spacing={2}  >
+                            <Typography variant='h5' sx={{ maxWidth: 800 }}><b>{productDetails.name}</b></Typography>
+                            <br />
+                            <Typography variant='h6'>Quanity : <b>{order.quantity}</b></Typography>
+                            <br />
+                            <Typography variant='h6'>Category : <b>{productDetails.category}</b></Typography>
+                            <br />
+                            <Typography variant='body1' sx={{ maxWidth: 500 }}><i>{productDetails.description}</i></Typography>
+                            <br />
+                            <div style={{ display: 'flex', alignItems: 'left' }}>
+
+                                <Typography gutterBottom variant="h5" color='red' sx={{ marginTop: '8px' }}>
+                                    Total Price :
+                                </Typography>
+
+                                <CurrencyRupeeIcon fontSize='medium' sx={{ m: 1.5, color: 'red' }} />
+                                <Typography gutterBottom variant="h5" color='red' sx={{ marginLeft: '2px', marginTop: '8px' }}>
+                                    {productDetails.price * order.quantity}
+                                </Typography>
+                            </div>
+
+                        </div>
+                    </Box>
+                </Grid>
+
+                <Grid container width='100%' paddingTop={2} spacing={3} alignItems="center" justifyContent="space-around">
+                    <Grid xs={12} >
+
+                        <Button
+                            color="primary"
+                            onClick={handleBackToDetails}
+                            sx={{ mr: 1, fontSize: 14 }}
+                        >
+                            BACK
+                        </Button>
+                        <Button
+                            variant="contained"
+                            onClick={handleNext}
+                            sx={{ mr: 1, bgcolor: "#3f51b5", fontSize: 14 }}
+                        >
+                            NEXT
+                        </Button>
+                    </Grid>
+                </Grid>
+
+            </Grid >
         );
     }
 
@@ -761,16 +854,23 @@ export default function PlaceOrder() {
                     </Stepper>
                     <div>
                         <React.Fragment>
-                            {activeStep === 1 ?
-                                <RenderSelectAddress />
-                                :
-                                (
-                                    activeStep === 2 ?
-                                        <RenderPlaceOrder />
-                                        :
-                                        <></>
-                                )
+                            {
+                                activeStep === 0 ?
+                                    <RenderItemDetails />
+                                    :
+                                    (
+                                        activeStep === 1 ?
+                                            <RenderSelectAddress />
+                                            :
+                                            (
+                                                activeStep === 2 ?
+                                                    <RenderPlaceOrder />
+                                                    :
+                                                    <></>
+                                            )
+                                    )
                             }
+
                         </React.Fragment>
                     </div>
                 </Box>
