@@ -60,6 +60,7 @@ Login Error:
 #### Quick Filter or Search bar:
 
 Searched for Shoe: 
+Note: Search Bar is available only on the product page. 
 
 ![image](https://github.com/user-attachments/assets/9ff346fe-9e14-4bb8-bec0-d0ab4b396367)
 
