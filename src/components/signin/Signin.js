@@ -129,13 +129,12 @@ const Signin = () => {
                 sessionStorage.setItem('isAdmin', true);
             }
             //   Store token (consider using localStorage or a stte management library)
-            // sessionStorage.setItem('isLoggedIn', true);
-            sessionStorage.setItem('access-token', token);
-            // sessionStorage.setItem('data', data);
-
             // console.log('is Admin', isAdmin);
             // console.log('is Logged In ', isLoggedIn);
-            // sessionStorage.setItem('isAdmin', isAdmin);
+
+            sessionStorage.setItem('isLoggedIn', true);
+            sessionStorage.setItem('access-token', token);
+            sessionStorage.setItem('data', data);
 
             // Login successful, navigate to products page
             navigate('/products');
