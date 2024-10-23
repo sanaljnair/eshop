@@ -60,7 +60,7 @@ const NavigationBar = (props) => {
     const page = props.page
     const isAdmin = props.isAdmin;
     const isLoggedIn = props.isLoggedIn;
-    
+
     const [searchTerm, setSearchTerm] = useState('');
 
     // console.log('NavBar : page: ', page);
@@ -87,7 +87,7 @@ const NavigationBar = (props) => {
                 <Button
                     variant="contained"
                     key="Login"
-                    sx={{backgroundColor: 'red'}}
+                    sx={{ backgroundColor: 'red' }}
                     component={Link} to="/signin"
                 >
                     Login
@@ -103,7 +103,7 @@ const NavigationBar = (props) => {
                 <Button
                     variant="contained"
                     key="Logout"
-                    sx={{backgroundColor: 'red'}}
+                    sx={{ backgroundColor: 'red' }}
                     component={Link} to="/signin"
                 >
                     Logout
@@ -176,6 +176,23 @@ const NavigationBar = (props) => {
 
     };
 
+    const RenderProductLink = () => {
+
+        // console.log('inside RenderAddProduct component')
+        return (
+            <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
+                <Button
+                    key="Product"
+                    sx={{ color: '#fff', textTransform: 'none', fontSize: 16, textDecoration: 'underline' }}
+                    component={Link} to='/products'                                           // <- change here 
+                >
+                    Products
+                </Button>
+            </Box>
+        );
+
+    };
+
     const handleInputChange = (event) => {
         setSearchTerm(event.target.value);
     };
@@ -183,7 +200,7 @@ const NavigationBar = (props) => {
 
     const handleSearchSubmit = (event) => {
         event.preventDefault();
-        if (searchTerm.length >= 3 && page==='products') {
+        if (searchTerm.length >= 3 && page === 'products') {
             props.onSearch(searchTerm); // Pass search term to products component
         }
         setSearchTerm(''); // Clear search bar after submit
@@ -222,7 +239,7 @@ const NavigationBar = (props) => {
                     </>
                 );
             case 'products':
-            case 'productDetails':
+
                 if (isLoggedIn === 'true') {
 
                     if (isAdmin === 'true') {
@@ -252,6 +269,24 @@ const NavigationBar = (props) => {
                         </>
                     );
                 }
+            case 'productDetails':
+            case 'order':
+                if (isLoggedIn === 'true') {
+                    return (
+                        <>
+                            <RenderProductLink />
+                            <RenderLogout />
+                        </>
+                    );
+                } else {
+                    return (
+                        <>
+                            <RenderProductLink />
+                            <RenderLogin />
+                        </>
+                    );
+                }
+
             default:
                 return (
                     <>
@@ -289,7 +324,7 @@ const NavigationBar = (props) => {
                         </Typography>
                     </Grid>
                     <Grid>
-                        <form onSubmit={handleSearchSubmit }>
+                        <form onSubmit={handleSearchSubmit}>
                             <Search>
                                 <SearchIconWrapper>
                                     <SearchIcon />

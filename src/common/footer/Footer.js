@@ -28,8 +28,6 @@ const Footer = () => {
                 </Typography>
                 <Typography variant="body2" color="textSecondary">2021</Typography>
             </div>
-
-
         </Box>
     );
 };

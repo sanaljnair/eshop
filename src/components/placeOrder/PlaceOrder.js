@@ -838,7 +838,7 @@ export default function PlaceOrder() {
 
     return (
         <Box sx={{ bgcolor: '#F5F5F5' }}>
-            <NavigationBar page="products" isLoggedIn={sessionStorage.getItem('isLoggedIn')} isAdmin={sessionStorage.getItem('isAdmin')} />
+            <NavigationBar page="order" isLoggedIn={sessionStorage.getItem('isLoggedIn')} isAdmin={sessionStorage.getItem('isAdmin')} />
 
             <Container component="main" maxWidth="xs" sx={{ marginLeft: '10%', marginRight: '10%', marginTop: '30px', minHeight: '85vh' }}  >
 
